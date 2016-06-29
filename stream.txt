@@ -1,0 +1,3 @@
+http://raspi.monaserver.ovh/MonaClients/VideoPlayer/
+rtmp://10.118.20.81/programming
+\\adldp1\Shared\Students\Programming Examples

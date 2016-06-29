@@ -1,0 +1,23 @@
+Stuart
+State Diagram:
+Huy: Maybe make eaten come off of made vulnerable
+Huy: Increase score when eaten?
+
+Class Diagram:
+Huy: Add separate ghost classes
+Huy: Maybe make a collectibles class from which all collectibles are derived
+Huy: Maybe make power pellet a sub-class of pellet
+
+Sequence Diagram:
+Huy: Possibly change movement direction of player before checking collisions
+
+Brad
+Activity Diagram:
+Huy: Reduce lives before checking if lives = 0
+
+Class Diagram:
+Huy: Add sound class
+Huy: Fix arrow collectible > fruit
+
+Sequence Diagram:
+Huy: Maybe add score to highscore list when gameover
