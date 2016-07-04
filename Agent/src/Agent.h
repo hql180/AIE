@@ -1,17 +1,19 @@
 #pragma once
 #include "MathLib.h"
-#include "src\SceneNode.h"
-#include "src\SpriteBatch.h"
+#include "SceneNode.h"
+#include "SpriteBatch.h"
 
 class IBehaviour;
+class Texture;
 
 class Agent : public SceneNode
 {
 public:
 	Agent();
+	Agent(Texture* a_sprite);
 	~Agent();
 
-	void AddForce(float dt);
+	void AddForce(Vector3 f);
 
 	virtual void update(float dt);
 
@@ -23,10 +25,10 @@ public:
 	Vector3 velocity;
 	float maxVelocity;
 	Vector3 acceleration;
+	Texture* sprite;
+	Vector3 force;
 
 	Agent* target;
-	
-	float force;
 
 	std::vector<IBehaviour*> behaviourList;
 };

@@ -24,9 +24,6 @@
     <ClCompile Include="src\gl_core_4_4.c">
       <Filter>BaseCode</Filter>
     </ClCompile>
-    <ClCompile Include="src\main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\SpriteBatch.cpp">
       <Filter>BaseCode</Filter>
     </ClCompile>
@@ -39,25 +36,28 @@
     <ClCompile Include="src\Font.cpp">
       <Filter>BaseCode</Filter>
     </ClCompile>
-    <ClCompile Include="Agent.cpp">
+    <ClCompile Include="src\Agent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\SceneNode.cpp">
+    <ClCompile Include="src\Flee.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="IBehaviour.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Seek.cpp">
+    <ClCompile Include="src\IBehaviour.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Scene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Flee.cpp">
+    <ClCompile Include="src\SceneNode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Wander.cpp">
+    <ClCompile Include="src\Seek.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Wander.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -74,31 +74,31 @@
     <ClInclude Include="src\Texture.h">
       <Filter>BaseCode</Filter>
     </ClInclude>
-    <ClInclude Include="src\Application2D.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\Font.h">
       <Filter>BaseCode</Filter>
     </ClInclude>
-    <ClInclude Include="Agent.h">
+    <ClInclude Include="src\Agent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\SceneNode.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IBehaviour.h">
+    <ClInclude Include="src\Application2D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Seek.h">
+    <ClInclude Include="src\Flee.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IBehaviour.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Scene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Flee.h">
+    <ClInclude Include="src\Seek.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Wander.h">
+    <ClInclude Include="src\Wander.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SceneNode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

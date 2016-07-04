@@ -3,8 +3,7 @@
 
 #include "Matrix3.h"
 #include "Scene.h"
-class SceneNode :
-	public Scene
+class SceneNode : public Scene
 {
 public:
 	SceneNode();

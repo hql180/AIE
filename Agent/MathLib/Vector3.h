@@ -27,6 +27,8 @@ public:
 
 	static Vector3 normalise(Vector3 vec);
 
+	static Vector3 normalise(Vector3 vec1, Vector3 vec2);
+
 	float x, y, z;
 };
 

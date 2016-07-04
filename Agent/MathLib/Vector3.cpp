@@ -81,6 +81,8 @@ Vector3 Vector3::normalise(Vector3 vec)
 	return vec.normalise();
 }
 
+
+
 Vector3 operator*(float lhs, Vector3 & rhs)
 {
 	return Vector3(rhs.x * lhs, rhs.y*lhs, rhs.z*lhs);

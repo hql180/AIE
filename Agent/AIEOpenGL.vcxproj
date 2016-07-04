@@ -11,35 +11,35 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Agent.cpp" />
-    <ClCompile Include="Flee.cpp" />
-    <ClCompile Include="IBehaviour.cpp" />
-    <ClCompile Include="Seek.cpp" />
+    <ClCompile Include="src\Agent.cpp" />
     <ClCompile Include="src\BaseApplication.cpp" />
+    <ClCompile Include="src\Flee.cpp" />
     <ClCompile Include="src\Font.cpp" />
     <ClCompile Include="src\gl_core_4_4.c" />
-    <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Application2D.cpp" />
+    <ClCompile Include="src\IBehaviour.cpp" />
+    <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Scene.cpp" />
     <ClCompile Include="src\SceneNode.cpp" />
+    <ClCompile Include="src\Seek.cpp" />
     <ClCompile Include="src\SpriteBatch.cpp" />
     <ClCompile Include="src\Texture.cpp" />
-    <ClCompile Include="Wander.cpp" />
+    <ClCompile Include="src\Wander.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Agent.h" />
-    <ClInclude Include="Flee.h" />
-    <ClInclude Include="IBehaviour.h" />
-    <ClInclude Include="Seek.h" />
+    <ClInclude Include="src\Agent.h" />
     <ClInclude Include="src\BaseApplication.h" />
+    <ClInclude Include="src\Flee.h" />
     <ClInclude Include="src\Font.h" />
     <ClInclude Include="src\gl_core_4_4.h" />
     <ClInclude Include="src\Application2D.h" />
+    <ClInclude Include="src\IBehaviour.h" />
     <ClInclude Include="src\Scene.h" />
     <ClInclude Include="src\SceneNode.h" />
+    <ClInclude Include="src\Seek.h" />
     <ClInclude Include="src\SpriteBatch.h" />
     <ClInclude Include="src\Texture.h" />
-    <ClInclude Include="Wander.h" />
+    <ClInclude Include="src\Wander.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="MathLib\MathLib.vcxproj">
