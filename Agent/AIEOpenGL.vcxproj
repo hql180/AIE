@@ -11,6 +11,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Evade.cpp" />
+    <ClCompile Include="Pursue.cpp" />
     <ClCompile Include="src\Agent.cpp" />
     <ClCompile Include="src\BaseApplication.cpp" />
     <ClCompile Include="src\Flee.cpp" />
@@ -25,8 +27,12 @@
     <ClCompile Include="src\SpriteBatch.cpp" />
     <ClCompile Include="src\Texture.cpp" />
     <ClCompile Include="src\Wander.cpp" />
+    <ClCompile Include="State.cpp" />
+    <ClCompile Include="StateMachine.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Evade.h" />
+    <ClInclude Include="Pursue.h" />
     <ClInclude Include="src\Agent.h" />
     <ClInclude Include="src\BaseApplication.h" />
     <ClInclude Include="src\Flee.h" />
@@ -40,6 +46,8 @@
     <ClInclude Include="src\SpriteBatch.h" />
     <ClInclude Include="src\Texture.h" />
     <ClInclude Include="src\Wander.h" />
+    <ClInclude Include="State.h" />
+    <ClInclude Include="StateMachine.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="MathLib\MathLib.vcxproj">

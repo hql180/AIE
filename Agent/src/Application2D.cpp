@@ -1,5 +1,7 @@
 #include "Application2D.h"
 #include <GLFW/glfw3.h>
+#include <time.h>
+#include <random>
 
 #include "SpriteBatch.h"
 #include "Texture.h"
@@ -8,8 +10,8 @@
 #include "Agent.h"
 #include "IBehaviour.h"
 #include "Wander.h"
-#include <time.h>
 #include "Seek.h"
+#include "Flee.h"
 
 
 Application2D::Application2D() {
@@ -26,31 +28,36 @@ bool Application2D::startup() {
 
 	m_spriteBatch = new SpriteBatch();
 
-	m_texture = new Texture("./bin/textures/crate.png");
+	m_texture = new Texture("./bin/textures/red.png");
 
 	m_font = new Font("./bin/font/consolas.ttf", 32);
 
-	testAgent = new Agent(m_texture);
-	testAgent1 = new Agent(m_texture);
-	testAgent2 = new Agent(m_texture);
-	testAgent3 = new Agent(m_texture);
-	testAgent4 = new Agent(m_texture);
-	testAgent5 = new Agent(m_texture);
-	testAgent6 = new Agent(m_texture);
+	for (int i = 0; i < 10; ++i)
+		agents.push_back(new Agent(m_texture));
 
-	testAgent->behaviourList.push_back(new Wander());
-
-	testAgent->target = new Agent();
-
-
-	testAgent1->behaviourList.push_back(new Wander());
-	testAgent2->behaviourList.push_back(new Wander());
-	testAgent3->behaviourList.push_back(new Wander());
-	testAgent4->behaviourList.push_back(new Wander());
-	testAgent5->behaviourList.push_back(new Wander());
-	testAgent6->behaviourList.push_back(new Wander());
+	std::mt19937 gen;
+	std::uniform_int_distribution<int> dis(0, 9);
 
 	srand(time(NULL));
+	int counter = 0;
+	for (auto & it : agents)
+	{
+		it->behaviourList.push_back(new Wander());
+		it->behaviourList.push_back(new Flee());
+		it->behaviourList.push_back(new Seek());
+		if (counter + 1 < 10)
+			it->target = agents[counter + 1];	
+		//if (9 - counter % 2 == 0)
+		//	it->fleeTarget = agents[9 - counter];
+/*		if (counter + 1 < 10)
+			it->fleeTarget = agents[counter + 1];
+		else
+			it->fleeTarget = agents[0];		
+		++counter;	*/	
+		/*it->target = agents[dis(gen)];
+		it->fleeTarget = agents[dis(gen)];*/
+	}
+	agents[9]->target = agents[0];
 
 	return true;
 }
@@ -70,20 +77,16 @@ bool Application2D::update(float deltaTime) {
 	if (hasWindowClosed() || isKeyPressed(GLFW_KEY_ESCAPE))
 		return false;
 
-	testAgent->update(deltaTime);
-
-	//testAgent1->update(deltaTime);
-	//testAgent2->update(deltaTime);
-	//testAgent3->update(deltaTime);
-	//testAgent4->update(deltaTime);
-	//testAgent5->update(deltaTime);
-	//testAgent6->update(deltaTime);
+	for (auto & it : agents)
+		it->update(deltaTime);
 
 	//if (BaseApplication::isKeyPressed(GLFW_KEY_S))
 	
 	int x, y;
 
 	BaseApplication::getCursorPosition(x, y);
+
+	//agents[5]->target->position = Vector3(x, 720-y, 1);
 
 	//testAgent->target->position = Vector3(x, 720 - y, 1);
 	
@@ -99,13 +102,8 @@ void Application2D::draw() {
 	// begin drawing sprites
 	m_spriteBatch->begin();
 
-	testAgent->draw(m_spriteBatch);
-	/*testAgent1->draw(m_spriteBatch);
-	testAgent2->draw(m_spriteBatch);
-	testAgent3->draw(m_spriteBatch);
-	testAgent4->draw(m_spriteBatch);
-	testAgent5->draw(m_spriteBatch);
-	testAgent6->draw(m_spriteBatch);*/
+	for (auto & it : agents)
+		it->draw(m_spriteBatch);
 
 	/*m_spriteBatch->drawSprite(m_texture, 200, 200, 100, 100);
 

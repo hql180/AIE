@@ -1,4 +1,4 @@
-
+#pragma once
 #include "IBehaviour.h"
 class Wander :
 	public IBehaviour
@@ -17,6 +17,7 @@ private:
 	float radius;
 	float jitter;
 	float distance;
-
+	
+	Vector3 displacement;
 
 };

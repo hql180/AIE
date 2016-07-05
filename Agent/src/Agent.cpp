@@ -13,7 +13,10 @@ Agent::Agent(Texture * a_sprite)
 	velocity = Vector3();
 	acceleration = Vector3();
 	position = Vector3(1280 / 2, 720 / 2, 1);
-	velocity = Vector3(10, 10, 1);
+	velocity = Vector3(1, 1, 1);
+
+	target = nullptr;
+	fleeTarget = nullptr;
 }
 
 
@@ -30,11 +33,13 @@ void Agent::update(float dt)
 {
 	force = Vector3(0, 0, 0);
 
-	for (auto const& it : behaviourList)
+	if (dt > 1)
+		dt = 1;
+
+	for (auto & it : behaviourList)
 	{
 		it->update(this, dt);
-	}
-		
+	}		
 
 	velocity = velocity + force * dt;
 
@@ -46,7 +51,7 @@ void Agent::update(float dt)
 
 	float angle = atan2(temp.y, temp.x);
 
-	local_transform = Matrix3::CreateScale(Vector3(.2, .2, 1)) * Matrix3::CreateRotation(angle - 1.5708) * Matrix3::CreateTranslation(position);
+	local_transform = Matrix3::CreateRotation(angle) * Matrix3::CreateTranslation(position);
 
 	UpdateTransforms();
 
@@ -57,6 +62,6 @@ void Agent::draw(SpriteBatch * spriteBatch)
 	//spriteBatch->drawSprite(sprite, position.x, position.y, 50, 50);
 	
 	spriteBatch->drawSpriteTransformed3x3(sprite,
-		(float*)global_transform);
+		(float*)global_transform, 25, 25);
 }
 

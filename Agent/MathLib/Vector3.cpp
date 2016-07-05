@@ -67,13 +67,17 @@ float Vector3::magnitude()
 
 Vector3 Vector3::normalise()
 {
+	
 	float mag = magnitude();
 
-	x /= mag;
-	y /= mag;
-	z /= mag;
+	if (mag != 0)
+	{
+		x /= mag;
+		y /= mag;
+		z /= mag;
 
-	return *this;
+		return *this;
+	}
 }
 
 Vector3 Vector3::normalise(Vector3 vec)

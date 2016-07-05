@@ -7,13 +7,14 @@
 #include <time.h>
 
 std::mt19937 gen;
-std::uniform_real_distribution<float> dis(0, 1);
+std::uniform_int_distribution<int> dis(0, 10);
 
 Wander::Wander()
 {
-	radius = 25;
-	jitter = 25;
-	distance = 25;	
+	radius = 50;
+	jitter = 35;
+	distance = 100;
+	displacement = Vector3::normalise(Vector3(dis(gen) - 5 , dis(gen) - 5, 1));
 }
 
 
@@ -24,7 +25,33 @@ Wander::~Wander()
 
 void Wander::update(Agent * agent, float dt)
 {
-	Vector3 target(agent->position.x + radius, agent->position.y, 1);
+	Vector3 target = agent->position + Vector3::normalise(agent->velocity) * distance;	
+	
+	displacement = displacement.normalise() * radius;
+
+	target = target + displacement;
+
+	//target = target + Vector3::normalise(Vector3(dis(gen) - 5, dis(gen) - 5, 1)) * jitter * radius;
+
+	Vector3 force = Vector3::normalise(target - agent->position) * agent->maxVelocity;
+
+	agent->AddForce(force - agent->velocity);
+
+	displacement = displacement + Vector3::normalise(Vector3(dis(gen) - 5, dis(gen) - 5, 1)) * jitter;
+
+	// Put this in constructor
+	// displacement = random unit vector (at the start)
+	// forward = position + velocity.normalise() * distance	
+	// wanderTarget = forward + (displacment * radius)
+	// seekTo(wanderTarget)
+	// update displacement so it will randomly wander
+	// displacement += jitter (random vector2)
+	// renormalize displacement so its still a unit vector
+
+
+/*	Vector3 target(agent->position.x + radius, agent->position.y, 1);
+
+	float test = dis(gen);
 
 	target = target + (Vector3(dis(gen), dis(gen), 1) * jitter) ;
 
@@ -32,9 +59,11 @@ void Wander::update(Agent * agent, float dt)
 
 	target = target * distance;
 
-	Vector3 force = Vector3::normalise(target - agent->position) * agent->maxVelocity;
+	agent->AddForce(target);*/ // AddForce truncates
 
-	agent->AddForce(force - agent->velocity);
+	//Vector3 force = Vector3::normalise(target - agent->position) * agent->maxVelocity;
+
+	//agent->AddForce(force - agent->velocity);
 	
 
 	/*Vector3 wanderForce;

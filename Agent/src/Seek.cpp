@@ -13,7 +13,10 @@ Seek::~Seek()
 
 void Seek::update(Agent * agent, float dt)
 {
-	Vector3 force = Vector3::normalise(agent->target->position - agent->position) * agent->maxVelocity;
+	if (agent->target)
+	{
+		Vector3 force = Vector3::normalise(agent->target->position - agent->position) * agent->maxVelocity;
 
-	agent->AddForce(force - agent->velocity);
+		agent->AddForce(force - agent->velocity);
+	}
 }

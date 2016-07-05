@@ -19,8 +19,6 @@ public:
 
 	virtual void draw(SpriteBatch* spriteBatch);
 
-
-
 	Vector3 position;
 	Vector3 velocity;
 	float maxVelocity;
@@ -29,6 +27,7 @@ public:
 	Vector3 force;
 
 	Agent* target;
+	Agent* fleeTarget;
 
 	std::vector<IBehaviour*> behaviourList;
 };
