@@ -87,16 +87,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="PatrolState.cpp" />
     <ClCompile Include="source\Agent.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="source\AttackState.cpp" />
     <ClCompile Include="source\Game1.cpp" />
+    <ClCompile Include="source\PatrolState.cpp" />
+    <ClCompile Include="source\SearchState.cpp" />
     <ClCompile Include="source\StateMachine.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="PatrolState.h" />
     <ClInclude Include="source\Agent.h" />
+    <ClInclude Include="source\AttackState.h" />
     <ClInclude Include="source\Game1.h" />
+    <ClInclude Include="source\PatrolState.h" />
+    <ClInclude Include="source\SearchState.h" />
     <ClInclude Include="source\StateMachine.h" />
     <ClInclude Include="source\State.h" />
   </ItemGroup>

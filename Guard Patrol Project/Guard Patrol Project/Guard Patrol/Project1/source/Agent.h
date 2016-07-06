@@ -20,6 +20,8 @@ enum Colour
 
 struct WayPoint
 {
+	WayPoint() {};
+	WayPoint(float a_x, float a_y) : x(a_x), y(a_y) {}
 	float x;
 	float y;
 };

@@ -6,6 +6,7 @@
 //--------
 #include "Agent.h"
 #include "Input.h"
+#include "StateMachine.h"
 
 #define _USE_MATH_DEFINES
 #include <math.h>

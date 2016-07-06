@@ -7,9 +7,9 @@ public:
 	StateMachine();
 	virtual ~StateMachine();
 
-	void update(float dt);
+	void update(Agent* pAgent, float dt);
 
-	void changeState(Agent* pAgent, State* pState);
+	void changeState(Agent* pAgent, State* newState);
 
 	State* getCurrentState();
 

@@ -27,7 +27,13 @@
     <ClCompile Include="source\StateMachine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PatrolState.cpp">
+    <ClCompile Include="source\AttackState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\PatrolState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\SearchState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -44,7 +50,13 @@
     <ClInclude Include="source\Game1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PatrolState.h">
+    <ClInclude Include="source\AttackState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\PatrolState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\SearchState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

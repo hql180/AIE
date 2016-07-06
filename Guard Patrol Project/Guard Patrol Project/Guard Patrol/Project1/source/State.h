@@ -9,11 +9,10 @@ public:
 	State();
 	~State();
 
-	virtual void enter(Agent* pAgent, StateMachine* pSM, float dt) = 0;
+	virtual void enter(Agent* pAgent) = 0;
 
 	virtual void update(Agent* pAgent, StateMachine* pSM, float dt) = 0;
 
-	virtual void exit(Agent* pAgent, StateMachine* pSM, float dt) = 0;
-
+	virtual void exit(Agent* pAgent) = 0;
 };
 
