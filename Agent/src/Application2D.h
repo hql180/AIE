@@ -27,4 +27,6 @@ protected:
 	Font*			m_font;
 
 	std::vector<Agent*> agents;	
+
+	Agent* mouse;
 };

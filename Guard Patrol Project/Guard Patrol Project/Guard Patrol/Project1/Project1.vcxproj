@@ -56,13 +56,13 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)AIE_GL\include\;$(SolutionDir)libraries\glfw3\include\GLFW\;$(SolutionDir)libraries\glew\include\;$(ProjectDir)include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)AIE_GL\include\;$(SolutionDir)libraries\glfw3\include\GLFW\;$(SolutionDir)libraries\glew\include\;$(ProjectDir)Resources;$(ProjectDir)include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)AIE_GL\bin\;$(SolutionDir)libraries\glew\lib\Release\Win32\;$(SolutionDir)libraries\glfw3\lib-vc2013\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)Resources\;$(SolutionDir)AIE_GL\bin\;$(SolutionDir)libraries\glew\lib\Release\Win32\;$(SolutionDir)libraries\glfw3\lib-vc2013\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>OpenGL32.lib;AIE_GL_d.lib;glew32.lib;glfw3.lib;legacy_stdio_definitions.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>

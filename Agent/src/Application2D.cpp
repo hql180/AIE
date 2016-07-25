@@ -12,6 +12,8 @@
 #include "Wander.h"
 #include "Seek.h"
 #include "Flee.h"
+#include "Pursue.h"
+#include "Evade.h"
 
 
 Application2D::Application2D() {
@@ -43,21 +45,27 @@ bool Application2D::startup() {
 	for (auto & it : agents)
 	{
 		it->behaviourList.push_back(new Wander());
-		it->behaviourList.push_back(new Flee());
-		it->behaviourList.push_back(new Seek());
+		it->behaviourList.push_back(new Evade());
+		it->behaviourList.push_back(new Pursue());
 		if (counter + 1 < 10)
 			it->target = agents[counter + 1];	
-		//if (9 - counter % 2 == 0)
-		//	it->fleeTarget = agents[9 - counter];
-/*		if (counter + 1 < 10)
-			it->fleeTarget = agents[counter + 1];
-		else
-			it->fleeTarget = agents[0];		
-		++counter;	*/	
+		if (9 - counter % 2 == 0)
+			it->fleeTarget = agents[9 - counter];
+		//if (counter + 1 < 10)
+		//	it->fleeTarget = agents[counter + 1];
+		//else
+		//	it->fleeTarget = agents[0];		
+		++counter;		
 		/*it->target = agents[dis(gen)];
 		it->fleeTarget = agents[dis(gen)];*/
 	}
-	agents[9]->target = agents[0];
+
+	mouse = new Agent(m_texture);
+
+	agents[9]->target = mouse;
+
+	
+
 
 	return true;
 }
@@ -85,6 +93,10 @@ bool Application2D::update(float deltaTime) {
 	int x, y;
 
 	BaseApplication::getCursorPosition(x, y);
+
+	mouse->position = Vector3(x, 720 - y, 1);
+
+
 
 	//agents[5]->target->position = Vector3(x, 720-y, 1);
 

@@ -11,43 +11,43 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Evade.cpp" />
-    <ClCompile Include="Pursue.cpp" />
     <ClCompile Include="src\Agent.cpp" />
     <ClCompile Include="src\BaseApplication.cpp" />
+    <ClCompile Include="src\Evade.cpp" />
     <ClCompile Include="src\Flee.cpp" />
     <ClCompile Include="src\Font.cpp" />
     <ClCompile Include="src\gl_core_4_4.c" />
     <ClCompile Include="src\Application2D.cpp" />
     <ClCompile Include="src\IBehaviour.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Pursue.cpp" />
     <ClCompile Include="src\Scene.cpp" />
     <ClCompile Include="src\SceneNode.cpp" />
     <ClCompile Include="src\Seek.cpp" />
     <ClCompile Include="src\SpriteBatch.cpp" />
+    <ClCompile Include="src\State.cpp" />
+    <ClCompile Include="src\StateMachine.cpp" />
     <ClCompile Include="src\Texture.cpp" />
     <ClCompile Include="src\Wander.cpp" />
-    <ClCompile Include="State.cpp" />
-    <ClCompile Include="StateMachine.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Evade.h" />
-    <ClInclude Include="Pursue.h" />
     <ClInclude Include="src\Agent.h" />
     <ClInclude Include="src\BaseApplication.h" />
+    <ClInclude Include="src\Evade.h" />
     <ClInclude Include="src\Flee.h" />
     <ClInclude Include="src\Font.h" />
     <ClInclude Include="src\gl_core_4_4.h" />
     <ClInclude Include="src\Application2D.h" />
     <ClInclude Include="src\IBehaviour.h" />
+    <ClInclude Include="src\Pursue.h" />
     <ClInclude Include="src\Scene.h" />
     <ClInclude Include="src\SceneNode.h" />
     <ClInclude Include="src\Seek.h" />
     <ClInclude Include="src\SpriteBatch.h" />
+    <ClInclude Include="src\State.h" />
+    <ClInclude Include="src\StateMachine.h" />
     <ClInclude Include="src\Texture.h" />
     <ClInclude Include="src\Wander.h" />
-    <ClInclude Include="State.h" />
-    <ClInclude Include="StateMachine.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="MathLib\MathLib.vcxproj">

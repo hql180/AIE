@@ -54,19 +54,10 @@
     <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="StateMachine.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Evade.cpp">
-      <Filter>Source Files\Behaviours</Filter>
-    </ClCompile>
     <ClCompile Include="src\Flee.cpp">
       <Filter>Source Files\Behaviours</Filter>
     </ClCompile>
     <ClCompile Include="src\IBehaviour.cpp">
-      <Filter>Source Files\Behaviours</Filter>
-    </ClCompile>
-    <ClCompile Include="Pursue.cpp">
       <Filter>Source Files\Behaviours</Filter>
     </ClCompile>
     <ClCompile Include="src\Seek.cpp">
@@ -75,7 +66,16 @@
     <ClCompile Include="src\Wander.cpp">
       <Filter>Source Files\Behaviours</Filter>
     </ClCompile>
-    <ClCompile Include="State.cpp">
+    <ClCompile Include="src\Evade.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Pursue.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\State.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\StateMachine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -107,16 +107,10 @@
     <ClInclude Include="src\SceneNode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="StateMachine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\Wander.h">
       <Filter>Header Files\Behaviours</Filter>
     </ClInclude>
     <ClInclude Include="src\Seek.h">
-      <Filter>Header Files\Behaviours</Filter>
-    </ClInclude>
-    <ClInclude Include="Pursue.h">
       <Filter>Header Files\Behaviours</Filter>
     </ClInclude>
     <ClInclude Include="src\IBehaviour.h">
@@ -125,11 +119,17 @@
     <ClInclude Include="src\Flee.h">
       <Filter>Header Files\Behaviours</Filter>
     </ClInclude>
-    <ClInclude Include="Evade.h">
-      <Filter>Header Files\Behaviours</Filter>
+    <ClInclude Include="src\Evade.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="State.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\Pursue.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\State.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\StateMachine.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
