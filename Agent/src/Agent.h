@@ -4,13 +4,13 @@
 #include "SpriteBatch.h"
 
 class IBehaviour;
-class Texture;
+class Application2D;
 
 class Agent : public SceneNode
 {
 public:
 	Agent();
-	Agent(Texture* a_sprite);
+	Agent(Texture* a_sprite, Application2D* appPointer);
 	~Agent();
 
 	void AddForce(Vector3 f);
@@ -18,6 +18,8 @@ public:
 	virtual void update(float dt);
 
 	virtual void draw(SpriteBatch* spriteBatch);
+
+	Application2D* pA2D;
 
 	Vector3 position;
 	Vector3 velocity;

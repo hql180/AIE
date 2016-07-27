@@ -20,13 +20,14 @@ public:
 	virtual bool update(float deltaTime);
 	virtual void draw();
 
+	std::vector<Agent*> agents;
+	std::vector<int*> trees;
+
 protected:
 
 	SpriteBatch*	m_spriteBatch;
 	Texture*		m_texture;
 	Font*			m_font;
-
-	std::vector<Agent*> agents;	
 
 	Agent* mouse;
 };

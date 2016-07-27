@@ -1,20 +1,24 @@
 #include "Agent.h"
 #include "IBehaviour.h"
+#include "Application2D.h"
 
 
 Agent::Agent()
 {
 }
 
-Agent::Agent(Texture * a_sprite)
+Agent::Agent(Texture * a_sprite, Application2D* appPointer)
 {
 	sprite = a_sprite;
+	pA2D = appPointer;
 	maxVelocity = 200;
 	velocity = Vector3();
 	acceleration = Vector3();
 	position = Vector3(1280 / 2, 720 / 2, 1);
 	velocity = Vector3(1, 1, 1);
 	combatTimer = 0;
+
+
 
 	target = nullptr;
 	fleeTarget = nullptr;
