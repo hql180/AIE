@@ -23,7 +23,7 @@ Wander::~Wander()
 {
 }
 
-void Wander::update(Agent * agent, float dt)
+Status Wander::update(Agent * agent, float dt)
 {
 	Vector3 target = agent->position + Vector3::normalise(agent->velocity) * distance;	
 	
@@ -38,6 +38,8 @@ void Wander::update(Agent * agent, float dt)
 	agent->AddForce(force - agent->velocity);
 
 	displacement = displacement + Vector3::normalise(Vector3(dis(gen) - 5, dis(gen) - 5, 1)) * jitter;
+
+	return SUCCESS;
 
 	// Put this in constructor
 	// displacement = random unit vector (at the start)

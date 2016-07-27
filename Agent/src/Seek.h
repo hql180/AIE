@@ -6,6 +6,6 @@ public:
 	Seek();
 	virtual ~Seek();
 
-	virtual void update(Agent* agent, float dt);
+	virtual Status update(Agent* agent, float dt);
 };
 

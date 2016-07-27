@@ -7,6 +7,6 @@ public:
 	Evade();
 	~Evade();
 
-	virtual void update(Agent* agent, float dt);
+	virtual Status update(Agent* agent, float dt);
 };
 

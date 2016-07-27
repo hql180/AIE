@@ -2,10 +2,6 @@
 
 
 
-IBehaviour::IBehaviour()
-{
-}
-
 
 IBehaviour::~IBehaviour()
 {

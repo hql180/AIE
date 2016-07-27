@@ -65,6 +65,12 @@ float Vector3::magnitude()
 	return sqrt(pow(x, 2) + pow(y, 2) + pow(z, 2));
 }
 
+float Vector3::magnitude(Vector3 vec)
+{
+	Vector3 temp = vec;
+	return temp.magnitude();
+}
+
 Vector3 Vector3::normalise()
 {
 	

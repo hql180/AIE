@@ -1,11 +1,11 @@
 #pragma once
 #include "IBehaviour.h"
-class Flee :
+class InCombat :
 	public IBehaviour
 {
 public:
-	Flee();
-	~Flee();
+	InCombat();
+	~InCombat();
 
 	virtual Status update(Agent* agent, float dt);
 };

@@ -14,6 +14,7 @@ Agent::Agent(Texture * a_sprite)
 	acceleration = Vector3();
 	position = Vector3(1280 / 2, 720 / 2, 1);
 	velocity = Vector3(1, 1, 1);
+	combatTimer = 0;
 
 	target = nullptr;
 	fleeTarget = nullptr;

@@ -26,9 +26,20 @@ public:
 	Texture* sprite;
 	Vector3 force;
 
+	float combatTimer;
+	float visionRange;
+	float attackRange;
+	float maxViewAngle;
+
+	int HP;
+	int maxHP;
+
+	
+
 	Agent* target;
 	Agent* fleeTarget;
 
 	std::vector<IBehaviour*> behaviourList;
+	
 };
 

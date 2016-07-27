@@ -22,6 +22,21 @@
     <Filter Include="Header Files\Behaviours">
       <UniqueIdentifier>{741f0bbf-2d75-4f59-8fb1-14a79c3f4854}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\StateMachine">
+      <UniqueIdentifier>{e7c7412c-3144-46de-b139-82f5653170a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\BehaviouralTree">
+      <UniqueIdentifier>{10623fba-0b51-4241-872f-664142a0549d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\BehaviouralTree">
+      <UniqueIdentifier>{307d2894-7d63-4919-a08d-4145290e1908}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\BehaviouralTree\Nodes">
+      <UniqueIdentifier>{404eab8e-b203-4289-8645-13535f3a50cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\BehaviouralTree\Nodes">
+      <UniqueIdentifier>{e1590ad0-12f7-445d-8386-ea4411a82ea4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\BaseApplication.cpp">
@@ -66,17 +81,38 @@
     <ClCompile Include="src\Wander.cpp">
       <Filter>Source Files\Behaviours</Filter>
     </ClCompile>
-    <ClCompile Include="src\Evade.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Pursue.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Behaviours</Filter>
     </ClCompile>
-    <ClCompile Include="src\State.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\Evade.cpp">
+      <Filter>Source Files\Behaviours</Filter>
     </ClCompile>
     <ClCompile Include="src\StateMachine.cpp">
+      <Filter>Source Files\StateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\State.cpp">
+      <Filter>Source Files\StateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BehaviourTree.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Sequence.cpp">
+      <Filter>Source Files\BehaviouralTree</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Selector.cpp">
+      <Filter>Source Files\BehaviouralTree</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Composite.cpp">
+      <Filter>Source Files\BehaviouralTree</Filter>
+    </ClCompile>
+    <ClCompile Include="src\InCombat.cpp">
+      <Filter>Source Files\BehaviouralTree\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\LowHealth.cpp">
+      <Filter>Source Files\BehaviouralTree\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\LineOfSight.cpp">
+      <Filter>Source Files\BehaviouralTree\Nodes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -120,16 +156,37 @@
       <Filter>Header Files\Behaviours</Filter>
     </ClInclude>
     <ClInclude Include="src\Evade.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Behaviours</Filter>
     </ClInclude>
     <ClInclude Include="src\Pursue.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\State.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Behaviours</Filter>
     </ClInclude>
     <ClInclude Include="src\StateMachine.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\State.h">
+      <Filter>Source Files\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BehaviourTree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Sequence.h">
+      <Filter>Header Files\BehaviouralTree</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Selector.h">
+      <Filter>Header Files\BehaviouralTree</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Composite.h">
+      <Filter>Header Files\BehaviouralTree</Filter>
+    </ClInclude>
+    <ClInclude Include="src\InCombat.h">
+      <Filter>Header Files\BehaviouralTree\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\LowHealth.h">
+      <Filter>Header Files\BehaviouralTree\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\LineOfSight.h">
+      <Filter>Header Files\BehaviouralTree\Nodes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

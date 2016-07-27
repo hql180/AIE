@@ -23,6 +23,8 @@ public:
 
 	float magnitude(); // Returns length/magnitude
 
+	static float magnitude(Vector3 vec);
+
 	Vector3 normalise(); // normlises vector
 
 	static Vector3 normalise(Vector3 vec);

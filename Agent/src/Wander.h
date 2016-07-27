@@ -7,7 +7,7 @@ public:
 	Wander();
 	~Wander();
 
-	virtual void update(Agent* agent, float dt);
+	virtual Status update(Agent* agent, float dt);
 
 	void setAngle(Vector3& displacement, float angleInDeg);
 
