@@ -2,24 +2,24 @@
 #include "MathLib.h"
 #include "SceneNode.h"
 #include "SpriteBatch.h"
+#include "PathFinder.h"
 
 class IBehaviour;
 class Application2D;
+
 
 class Agent : public SceneNode
 {
 public:
 	Agent();
-	Agent(Texture* a_sprite, Application2D* appPointer);
+	Agent(Texture* a_sprite);
 	~Agent();
 
 	void AddForce(Vector3 f);
 
-	virtual void update(float dt);
+	virtual void update(Application2D* pA2D, float dt);
 
 	virtual void draw(SpriteBatch* spriteBatch);
-
-	Application2D* pA2D;
 
 	Vector3 position;
 	Vector3 velocity;
@@ -34,12 +34,12 @@ public:
 	float maxViewAngle;
 
 	int HP;
-	int maxHP;
-
-	
+	int maxHP;	
 
 	Agent* target;
 	Agent* fleeTarget;
+
+	PathFinder* path;
 
 	std::vector<IBehaviour*> behaviourList;
 	

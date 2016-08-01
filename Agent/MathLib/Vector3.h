@@ -31,6 +31,10 @@ public:
 
 	static Vector3 normalise(Vector3 vec1, Vector3 vec2);
 
+	Vector3 clamp(Vector3 &vec, Vector3 lower, Vector3 upper);
+
+	int clamp(float value, float min, float max);
+
 	float x, y, z;
 };
 

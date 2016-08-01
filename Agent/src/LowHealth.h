@@ -7,6 +7,6 @@ public:
 	LowHealth();
 	~LowHealth();
 
-	virtual Status update(Agent* agent, float dt);
+	virtual Status update(Agent* agent, Application2D* pA2D, float dt);
 };
 

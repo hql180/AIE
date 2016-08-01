@@ -14,6 +14,8 @@
 #include "Flee.h"
 #include "Pursue.h"
 #include "Evade.h"
+#include "PathFinder.h"
+#include "Graph.h"
 
 
 Application2D::Application2D() {
@@ -28,18 +30,40 @@ bool Application2D::startup() {
 	
 	createWindow("A.I. Project", 1280, 720);
 
+	float blocks = 720 / 30;
+
 	m_spriteBatch = new SpriteBatch();
 
 	m_texture = new Texture("./bin/textures/red.png");
 
+	m_tree = new Texture("./bin/textures/bush.png");
+
+	m_node = new Texture("./bin/textures/nodeTexture.png");
+
 	m_font = new Font("./bin/font/consolas.ttf", 32);
 
-	for (int i = 0; i < 10; ++i)
+	m_graph = new Graph();
+
+	for (int i = 0; i < 15; ++i)
 		agents.push_back(new Agent(m_texture));
+
+
+
+	for (int i = 2; i < 52; ++i)
+		for (int j = 2; j < 29; ++j)
+			m_graph->AddNode(i*blocks, j*blocks);
+
+	for (auto & src : m_graph->nodeList)
+		for (auto & dest : m_graph->nodeList)
+			if (src->pos.distance(dest->pos) <= 34)
+				if (src != dest)
+					m_graph->AddConnection(src, dest);
 
 	std::mt19937 gen;
 	std::uniform_int_distribution<int> dis(0, 9);
 
+	trees.push_back(new Tree(Vector3(300, 300, 0), 50));
+	
 	srand(time(NULL));
 	int counter = 0;
 	for (auto & it : agents)
@@ -86,7 +110,7 @@ bool Application2D::update(float deltaTime) {
 		return false;
 
 	for (auto & it : agents)
-		it->update(deltaTime);
+		it->update(this, deltaTime);
 
 	//if (BaseApplication::isKeyPressed(GLFW_KEY_S))
 	
@@ -117,6 +141,18 @@ void Application2D::draw() {
 	for (auto & it : agents)
 		it->draw(m_spriteBatch);
 
+	
+
+	for (auto graph : m_graph->nodeList)
+	{
+		m_spriteBatch->drawSprite(m_node, graph->pos.x, graph->pos.y, 0, 0, 10);
+
+		for(auto & edges: graph->connections)
+			m_spriteBatch->drawLine(graph->pos.x, graph->pos.y, edges.connection->pos.x, edges.connection->pos.y, 1, 12);
+	}
+
+
+	m_spriteBatch->drawSprite(m_tree, trees[0]->position.x, trees[0]->position.y, trees[0]->radius, trees[0]->radius);
 	/*m_spriteBatch->drawSprite(m_texture, 200, 200, 100, 100);
 
 	m_spriteBatch->drawLine(300, 300, 600, 400, 10, 1);

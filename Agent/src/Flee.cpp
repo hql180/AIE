@@ -11,7 +11,7 @@ Flee::~Flee()
 {
 }
 
-Status Flee::update(Agent * agent, float dt)
+Status Flee::update(Agent* agent, Application2D* pA2D, float dt)
 {
 	if (agent->fleeTarget)
 	{

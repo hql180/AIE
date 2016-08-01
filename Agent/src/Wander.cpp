@@ -23,7 +23,7 @@ Wander::~Wander()
 {
 }
 
-Status Wander::update(Agent * agent, float dt)
+Status Wander::update(Agent* agent, Application2D* pA2D, float dt)
 {
 	Vector3 target = agent->position + Vector3::normalise(agent->velocity) * distance;	
 	

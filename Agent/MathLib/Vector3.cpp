@@ -1,5 +1,6 @@
 #include "Vector3.h"
 #include <math.h>
+#include <algorithm>
 
 
 Vector3::Vector3()
@@ -89,6 +90,57 @@ Vector3 Vector3::normalise()
 Vector3 Vector3::normalise(Vector3 vec)
 {
 	return vec.normalise();
+}
+
+Vector3 Vector3::clamp(Vector3 &vec, Vector3 lower, Vector3 upper)
+{
+	Vector3 minX;
+	Vector3 maxX;
+	Vector3 minY;
+	Vector3 maxY;
+
+	if (lower.x < upper.x)
+	{
+		minX = lower;
+		maxX = upper;
+	}
+	else
+	{
+		minX = upper;
+		maxX = lower;
+	}
+	if (lower.y < upper.y)
+	{
+		minY = lower;
+		maxY = upper;
+	}
+	else
+	{
+		minY = upper;
+		maxY = lower;
+	}
+	
+
+	if (vec.x > maxX.x)
+		return vec = maxX;
+
+	else if (vec.x < minX.x)
+		return vec = minX;
+	else if (vec.y > maxY.y)
+		return vec = maxY;
+	else if (vec.y < minY.y)
+		return vec = minY;
+
+	return vec;
+}
+
+int Vector3::clamp(float value, float min, float max)
+{
+	if (value < min)
+		return min;
+	else if (value > max)
+		return max;
+	return value;
 }
 
 

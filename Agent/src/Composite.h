@@ -13,7 +13,7 @@ public:
 	Composite();
 	~Composite();
 	
-	virtual Status update(Agent* agent, float dt) = 0;
+	virtual Status update(Agent* agent, Application2D* pA2D, float dt) = 0;
 
 	std::vector<IBehaviour> childBehaviours;
 };

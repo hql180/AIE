@@ -37,6 +37,9 @@
     <Filter Include="Header Files\BehaviouralTree\Nodes">
       <UniqueIdentifier>{e1590ad0-12f7-445d-8386-ea4411a82ea4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\PathFinding">
+      <UniqueIdentifier>{241e2a2f-12e4-4ac3-b350-182e21689e57}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\BaseApplication.cpp">
@@ -114,6 +117,18 @@
     <ClCompile Include="src\LineOfSight.cpp">
       <Filter>Source Files\BehaviouralTree\Nodes</Filter>
     </ClCompile>
+    <ClCompile Include="src\InRange.cpp">
+      <Filter>Source Files\BehaviouralTree\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SelectTarget.cpp">
+      <Filter>Source Files\BehaviouralTree\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graph.cpp">
+      <Filter>Source Files\PathFinding</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PathFinder.cpp">
+      <Filter>Source Files\PathFinding</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\gl_core_4_4.h">
@@ -155,12 +170,6 @@
     <ClInclude Include="src\Flee.h">
       <Filter>Header Files\Behaviours</Filter>
     </ClInclude>
-    <ClInclude Include="src\Evade.h">
-      <Filter>Source Files\Behaviours</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Pursue.h">
-      <Filter>Source Files\Behaviours</Filter>
-    </ClInclude>
     <ClInclude Include="src\StateMachine.h">
       <Filter>Source Files\StateMachine</Filter>
     </ClInclude>
@@ -187,6 +196,24 @@
     </ClInclude>
     <ClInclude Include="src\LineOfSight.h">
       <Filter>Header Files\BehaviouralTree\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\InRange.h">
+      <Filter>Header Files\BehaviouralTree\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SelectTarget.h">
+      <Filter>Header Files\BehaviouralTree\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Evade.h">
+      <Filter>Header Files\Behaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pursue.h">
+      <Filter>Header Files\Behaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graph.h">
+      <Filter>Source Files\PathFinding</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PathFinder.h">
+      <Filter>Source Files\PathFinding</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

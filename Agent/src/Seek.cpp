@@ -11,7 +11,7 @@ Seek::~Seek()
 {
 }
 
-Status Seek::update(Agent * agent, float dt)
+Status Seek::update(Agent* agent, Application2D* pA2D, float dt)
 {
 	if (agent->target)
 	{

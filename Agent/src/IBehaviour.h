@@ -19,7 +19,7 @@ public:
 
 	static Vector3 truncate(Vector3 vec, float max);
 
-	virtual Status update(Agent* agent, float dt) = 0;
+	virtual Status update(Agent* agent, Application2D* pA2D, float dt) = 0;
 
 	Status eStatus;
 

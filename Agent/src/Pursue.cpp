@@ -10,7 +10,7 @@ Pursue::~Pursue()
 {
 }
 
-Status Pursue::update(Agent * agent, float dt)
+Status Pursue::update(Agent* agent, Application2D* pA2D, float dt)
 {
 	if (agent->target)
 	{

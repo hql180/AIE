@@ -7,10 +7,10 @@ Agent::Agent()
 {
 }
 
-Agent::Agent(Texture * a_sprite, Application2D* appPointer)
+Agent::Agent(Texture * a_sprite)
 {
 	sprite = a_sprite;
-	pA2D = appPointer;
+	//pA2D = appPointer;
 	maxVelocity = 200;
 	velocity = Vector3();
 	acceleration = Vector3();
@@ -34,7 +34,7 @@ void Agent::AddForce(Vector3 f)
 	force = IBehaviour::truncate(force + f, maxVelocity);
 }
 
-void Agent::update(float dt)
+void Agent::update(Application2D* pA2D, float dt)
 {
 	force = Vector3(0, 0, 0);
 
@@ -43,7 +43,7 @@ void Agent::update(float dt)
 
 	for (auto & it : behaviourList)
 	{
-		it->update(this, dt);
+		it->update(this, pA2D, dt);
 	}		
 
 	velocity = velocity + force * dt;
