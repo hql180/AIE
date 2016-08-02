@@ -27,21 +27,15 @@ Arrow::Arrow(Agent* shooter, Application2D* pA2D)
 
 Arrow::~Arrow()
 {
-	for (auto& behaviours : behaviourList)
-		delete behaviours;
+	//for (int i = behaviourList.size() - 1; i >= 0; --i)
+	//	delete behaviourList[i];
+	
 }
 
 void Arrow::update(Application2D * pA2D, float dt)
 {
 	if (target && target->isDead == false)
 	{
-		if ((target->position - position).magnitude() <= 5)
-		{
-			target->combatTimer = 5;
-			target->HP -= attackDamage;
-			isDead = true;
-		}
-
 		force = Vector3(0, 0, 0);
 		
 		float localDT = dt;
@@ -66,6 +60,13 @@ void Arrow::update(Application2D * pA2D, float dt)
 		local_transform = Matrix3::CreateRotation(angle) * Matrix3::CreateTranslation(position);
 
 		UpdateTransforms();
+
+		if (Vector3(target->position - position).magnitude() <= 5)
+		{
+			target->combatTimer = 5;
+			target->HP -= attackDamage;
+			isDead = true;
+		}
 	}
 	isDead = true;
 
@@ -73,6 +74,6 @@ void Arrow::update(Application2D * pA2D, float dt)
 
 void Arrow::draw(SpriteBatch * spriteBatch)
 {
-	spriteBatch->drawSpriteTransformed3x3(sprite,
-		(float*)global_transform, 25, 25);
+	spriteBatch->drawSpriteTransformed3x3(sprite,(float*)global_transform, 25, 25);
+
 }

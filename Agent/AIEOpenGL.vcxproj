@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\..\Huy%27s Beast Reborn\Documents\AIE\Agent\src\EvadePath.cpp" />
     <ClCompile Include="src\AddPath.cpp" />
     <ClCompile Include="src\Agent.cpp" />
     <ClCompile Include="src\Archer.cpp" />
@@ -51,6 +52,7 @@
     <ClCompile Include="src\WanderPath.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\Huy%27s Beast Reborn\Documents\AIE\Agent\src\EvadePath.h" />
     <ClInclude Include="src\AddPath.h" />
     <ClInclude Include="src\Agent.h" />
     <ClInclude Include="src\Archer.h" />

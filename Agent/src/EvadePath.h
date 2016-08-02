@@ -1,18 +1,12 @@
 #pragma once
 #include "IBehaviour.h"
-class WanderPath :
+class EvadePath :
 	public IBehaviour
 {
 public:
-	WanderPath();
-	~WanderPath();
+	EvadePath();
+	~EvadePath();
 
 	virtual Status update(Agent* agent, Application2D* pA2D, float dt);
-
-	Vector3 displacement;
-
-	float radius;
-	float jitter;
-	float distance;
 };
 

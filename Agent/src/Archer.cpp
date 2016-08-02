@@ -23,6 +23,8 @@ Archer::Archer(Texture * a_sprite, Vector3 pos, float a_maxVel, int hp, float a_
 	combatTimer = cTimer;
 	velocity = Vector3(1, 1, 1);
 	isDead = false;
+
+	pathFinder = nullptr;
 }
 
 Archer::~Archer()
@@ -43,7 +45,7 @@ void Archer::update(Application2D * pA2D, float dt)
 
 	velocity = velocity + force * dt;
 
-	IBehaviour::truncate(velocity, maxVelocity);
+	velocity = IBehaviour::truncate(velocity, maxVelocity);
 
 	position = position + velocity * dt;
 

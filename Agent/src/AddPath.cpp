@@ -22,17 +22,19 @@ AddPath::~AddPath()
 
 Status AddPath::update(Agent * agent, Application2D * pA2D, float dt)
 {
-	if (agent->pathFinder)
+	if (agent->pathFinder != nullptr)
 		delete agent->pathFinder;
-
-	Graph::Node* start;
 
 	agent->pathFinder = new PathFinder();
 
+	Graph::Node* start;
+	
 	std::vector<Graph::Node*> closestStart;
 	std::vector<Graph::Node*> closestEnd;
 
-	if (agent->path.front())
+	pA2D->m_graph->FindNodesInRange(closestEnd, agent->target->position.x, agent->target->position.y, 50);
+
+	if (!agent->path.empty())
 		start = agent->path.front();
 	else
 	{
@@ -53,9 +55,7 @@ Status AddPath::update(Agent * agent, Application2D * pA2D, float dt)
 	{
 		Vector2 agentPos = Vector2(agent->position.x, agent->position.y);
 		return (a->pos - agentPos).magnitude() < (b->pos - agentPos).magnitude();
-	});
-		
-	pA2D->m_graph->FindNodesInRange(closestEnd, agent->position.x, agent->position.y, 50);
+	});	
 
 	Graph::Node* end = closestEnd.front();
 

@@ -2,6 +2,7 @@
 #include <GLFW/glfw3.h>
 #include <time.h>
 #include <random>
+#include <algorithm>
 
 #include "SpriteBatch.h"
 #include "Texture.h"
@@ -30,6 +31,8 @@
 #include "Heal.h"
 #include "WanderPath.h"
 #include "Archer.h"
+#include "AddPath.h"
+#include "EvadePath.h"
 
 
 
@@ -77,8 +80,6 @@ bool Application2D::startup() {
 				if (src != dest)
 					m_graph->AddConnection(src, dest);	
 
-
-
 	std::mt19937 gen;
 	std::uniform_int_distribution<int> dis(0, 9);
 
@@ -88,85 +89,77 @@ bool Application2D::startup() {
 
 	std::uniform_int_distribution<int> treeSize(30, 75);
 
-
-
-	for (int i = 0; i <= 50; ++i)
+	for (int i = 0; i < 50; ++i)
 		trees.push_back(new Tree(Vector3(disX(gen), disY(gen), 0), treeSize(gen)));
 
 	for (auto & tree : trees)
 		m_graph->RemoveNodeAt(Vector2(tree->position.x, tree->position.y), tree->radius/2);
 
-	Selector* fightOrWander = new Selector(); // Top
+	Selector* fightOrWander = new Selector(); // Fight or Wander 0/3
 
-	{
+	Selector* fightOrFlight = new Selector(); // Fight or Flight 0/2
 
-		Selector* fightOrFlight = new Selector(); // Left
+	fightOrWander->childBehaviours.push_back(new IsDead()); // Fight or Wander 1/3
 
-		fightOrWander->childBehaviours.push_back(new IsDead()); // ADDED ISDEAD
+	fightOrWander->childBehaviours.push_back(fightOrFlight); // Fight or Wander 2/3
 
-		fightOrWander->childBehaviours.push_back(fightOrFlight); // ADDED FIGHT OR FLIGHT SELECTOR
+	Sequence* runAway = new Sequence(); // Run Away 0/3
 
-		Sequence* runAway = new Sequence(); // Left Left
+	fightOrFlight->childBehaviours.push_back(runAway); // Fight or Flight 1/2
 
-		fightOrFlight->childBehaviours.push_back(runAway); // ADDED RUNAWAY
+	runAway->childBehaviours.push_back(new InCombat());	// Run Away 1/3
+	runAway->childBehaviours.push_back(new LowHealth()); // Run Away 2/3
+	runAway->childBehaviours.push_back(new EvadePath()); // Run Away 3/3
+	runAway->childBehaviours.push_back(new SeekPath()); // RunAway 4
 
-		runAway->childBehaviours.push_back(new InCombat());
-		runAway->childBehaviours.push_back(new LowHealth()); // ADDED RUNAWAY LEAVES
-		runAway->childBehaviours.push_back(new Evade());
+	Sequence* goodFightingCondition = new Sequence(); // Good Fighting Condition 0/2
 
-		Sequence* goodFightingCondition = new Sequence(); // Left Right	
+	fightOrFlight->childBehaviours.push_back(goodFightingCondition); // Fight or Flight 2/2
 
-		fightOrFlight->childBehaviours.push_back(goodFightingCondition); // ADDED GOOD FIGHTING CONDITION
+	Decorator* notLowHealth = new Decorator(); // Not LowHealth 0/1
 
-		Decorator* notLowHealth = new Decorator(); // Left Right Leaf 1
+	goodFightingCondition->childBehaviours.push_back(notLowHealth); // Good Fighting Condition 1/2
 
-		goodFightingCondition->childBehaviours.push_back(notLowHealth); // ADDED NOT LOWHEALTH
+	notLowHealth->childBehaviours.push_back(new LowHealth());  // Not LowHealth 0/1
 
-		notLowHealth->childBehaviours.push_back(new LowHealth());  // ADDED NOT LOW HEALTH
+	Selector* targetOrPath = new Selector(); // Target or Path 0/2
 
-		Selector* targetOrPath = new Selector(); // Left Right Leaf 2
+	goodFightingCondition->childBehaviours.push_back(targetOrPath); // Good Fighting Condition 2/2
 
-		goodFightingCondition->childBehaviours.push_back(targetOrPath);
+	Sequence* targetInSight = new Sequence(); // Target in Sight 0/2
 
-		Sequence* targetInSight = new Sequence(); // Left Right Leaf 2 Left
+	targetOrPath->childBehaviours.push_back(targetInSight); // Target or Path 1/2
 
-		targetOrPath->childBehaviours.push_back(targetInSight);
+	targetInSight->childBehaviours.push_back(new SelectTarget()); // Target in Sight 1/2
 
-		targetInSight->childBehaviours.push_back(new SelectTarget()); // Left Right Leaf 2 Left Leaf 1
+	targetInSight->childBehaviours.push_back(new AddPath());
 
-		Selector* attackOrClose = new Selector(); // Left Right Leaf 2 Left Leaf 2
+	Selector* attackOrClose = new Selector(); // Attack or seek 0/2
 
-		targetInSight->childBehaviours.push_back(attackOrClose);
+	targetInSight->childBehaviours.push_back(attackOrClose); // Target in Sight 2/2
 
-		Sequence* attack = new Sequence(); // // Left Right Leaf 2 Left Leaf 2 Left
+	Sequence* attack = new Sequence(); // ATTACK 0/2
 
-		attackOrClose->childBehaviours.push_back(attack);
+	attackOrClose->childBehaviours.push_back(attack); // Attack or seek 1/2
 
-		attack->childBehaviours.push_back(new InRange());
-		attack->childBehaviours.push_back(new Attack());
+	attack->childBehaviours.push_back(new InRange()); // ATTACK 1/2
+	attack->childBehaviours.push_back(new Attack()); // ATTACK 2/2
 
-		attackOrClose->childBehaviours.push_back(attack); // ATTACK ADDED
+	attackOrClose->childBehaviours.push_back(new SeekPath()); // Attack or seek 2/2
 
-		attackOrClose->childBehaviours.push_back(new SeekPath()); // SEEK PATH TO GET IN RANGE
+	targetOrPath->childBehaviours.push_back(new SeekPath()); // Target or Path 2/2
 
-		targetOrPath->childBehaviours.push_back(new SeekPath);
+	Selector* wanderOrHeal = new Selector(); // Wander or Heal 0/2
 
-	} // Left Side//Left Side
+	fightOrWander->childBehaviours.push_back(wanderOrHeal); // Fight or Wander 3/3
 
-	Selector* wanderOrHeal = new Selector();
+	Sequence* heal = new Sequence(); // Heal 0/2
 
-	fightOrWander->childBehaviours.push_back(wanderOrHeal);
+	wanderOrHeal->childBehaviours.push_back(new Heal()); // Wander or Heal 0/2
 
-	Sequence* heal = new Sequence();
+	wanderOrHeal->childBehaviours.push_back(new WanderPath()); // Wander or Heal 0/2
 
-	wanderOrHeal->childBehaviours.push_back(heal);
-
-	heal->childBehaviours.push_back(new LowHealth());
-	heal->childBehaviours.push_back(new Heal());
-
-	wanderOrHeal->childBehaviours.push_back(new WanderPath());
-
-	for (int i = 0; i <= 10; ++i)
+	for (int i = 0; i < 10; ++i)
 	{
 		agents.push_back(new Archer(m_texture, Vector3(disX(gen), disY(gen), 1)));
 		agents.back()->behaviourList.push_back(fightOrWander);
@@ -221,8 +214,10 @@ bool Application2D::update(float deltaTime) {
 	for (auto & it : agents)
 		it->update(this, deltaTime);
 
-	for (int i = 0; i < arrows.size(); ++i)
-		arrows[i]->update(this, deltaTime);
+	//std::remove_if(arrows.begin(), arrows.end(), [](Arrow* a) {return a->isDead;});
+
+	//for (int i = 0; i < arrows.size(); ++i)
+	//	arrows[i]->update(this, deltaTime);
 
 	//if (BaseApplication::isKeyPressed(GLFW_KEY_S))
 	
@@ -256,7 +251,7 @@ void Application2D::draw() {
 	
 
 	for (auto& arrow : arrows)
-		if (arrow->isDead = false)
+		if (arrow->isDead == false)
 			arrow->draw(m_spriteBatch);
 	
 
