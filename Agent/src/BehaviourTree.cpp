@@ -13,10 +13,7 @@ BehaviourTree::~BehaviourTree()
 
 void BehaviourTree::insert(IBehaviour & bh, IBehaviour * observer)
 {
-	if (observer)
-		bh.observer = observer;		
-	
-	behaviours.push_front(&bh);
+
 }
 
 void BehaviourTree::terminate(IBehaviour & bh, Status result)

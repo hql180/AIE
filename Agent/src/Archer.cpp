@@ -1,41 +1,35 @@
-#include "Agent.h"
+#include "Archer.h"
 #include "IBehaviour.h"
-#include "Application2D.h"
 
 
-Agent::Agent()
+Archer::Archer()
 {
 }
 
-Agent::Agent(Texture * a_sprite)
+Archer::Archer(Texture * a_sprite, Vector3 pos, float a_maxVel, int hp, float a_damage, float a_attackTime, float a_range, float a_vision, float a_vAngle, float a_accuracy, float cTimer)
 {
 	sprite = a_sprite;
-	//pA2D = appPointer;
-	maxVelocity = 200;
-	velocity = Vector3();
-	acceleration = Vector3();
-	position = Vector3(1280 / 2, 720 / 2, 1);
+	position = pos;
+	maxVelocity = a_maxVel;
+	maxHP = hp;
+	HP = maxHP;
+	attackDamage = a_damage;
+	attackTime = a_attackTime;
+	maxAttackTime = attackTime;
+	attackRange = a_range;
+	visionRange = a_vision;
+	maxViewAngle = a_vAngle;
+	accuracy = a_accuracy;
+	combatTimer = cTimer;
 	velocity = Vector3(1, 1, 1);
-	combatTimer = 0;
 	isDead = false;
-
-
-
-	target = nullptr;
-	fleeTarget = nullptr;
 }
 
-
-Agent::~Agent()
+Archer::~Archer()
 {
 }
 
-void Agent::AddForce(Vector3 f)
-{
-	force = IBehaviour::truncate(force + f, maxVelocity);
-}
-
-void Agent::update(Application2D* pA2D, float dt)
+void Archer::update(Application2D * pA2D, float dt)
 {
 	force = Vector3(0, 0, 0);
 
@@ -45,7 +39,7 @@ void Agent::update(Application2D* pA2D, float dt)
 	for (auto & it : behaviourList)
 	{
 		it->update(this, pA2D, dt);
-	}		
+	}
 
 	velocity = velocity + force * dt;
 
@@ -60,14 +54,10 @@ void Agent::update(Application2D* pA2D, float dt)
 	local_transform = Matrix3::CreateRotation(angle) * Matrix3::CreateTranslation(position);
 
 	UpdateTransforms();
-
 }
 
-void Agent::draw(SpriteBatch * spriteBatch)
+void Archer::draw(SpriteBatch * spriteBatch)
 {
-	//spriteBatch->drawSprite(sprite, position.x, position.y, 50, 50);
-	
 	spriteBatch->drawSpriteTransformed3x3(sprite,
 		(float*)global_transform, 25, 25);
 }
-

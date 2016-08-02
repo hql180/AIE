@@ -6,15 +6,15 @@
 #include <random>
 #include <time.h>
 
-std::mt19937 gen;
-std::uniform_int_distribution<int> dis(0, 10);
+//std::mt19937 gen;
+//std::uniform_int_distribution<int> dis(0, 10);
 
 Wander::Wander()
 {
 	radius = 50;
 	jitter = 35;
 	distance = 100;
-	displacement = Vector3::normalise(Vector3(dis(gen) - 5 , dis(gen) - 5, 1));
+//	displacement = Vector3::normalise(Vector3(dis(gen) - 5 , dis(gen) - 5, 1));
 }
 
 
@@ -25,21 +25,21 @@ Wander::~Wander()
 
 Status Wander::update(Agent* agent, Application2D* pA2D, float dt)
 {
-	Vector3 target = agent->position + Vector3::normalise(agent->velocity) * distance;	
-	
-	displacement = displacement.normalise() * radius;
+	//Vector3 target = agent->position + Vector3::normalise(agent->velocity) * distance;	
+	//
+	//displacement = displacement.normalise() * radius;
 
-	target = target + displacement;
+	//target = target + displacement;
 
-	//target = target + Vector3::normalise(Vector3(dis(gen) - 5, dis(gen) - 5, 1)) * jitter * radius;
+	////target = target + Vector3::normalise(Vector3(dis(gen) - 5, dis(gen) - 5, 1)) * jitter * radius;
 
-	Vector3 force = Vector3::normalise(target - agent->position) * agent->maxVelocity;
+	//Vector3 force = Vector3::normalise(target - agent->position) * agent->maxVelocity;
 
-	agent->AddForce(force - agent->velocity);
+	//agent->AddForce(force - agent->velocity);
 
-	displacement = displacement + Vector3::normalise(Vector3(dis(gen) - 5, dis(gen) - 5, 1)) * jitter;
+	//displacement = displacement + Vector3::normalise(Vector3(dis(gen) - 5, dis(gen) - 5, 1)) * jitter;
 
-	return SUCCESS;
+	//return SUCCESS;
 
 	// Put this in constructor
 	// displacement = random unit vector (at the start)
@@ -93,6 +93,8 @@ Status Wander::update(Agent* agent, Application2D* pA2D, float dt)
 	agent->velocity = agent->velocity + agent->acceleration * dt;
 
 	agent->position = agent->position + agent->velocity * dt;*/
+
+	return FAILURE;
 	
 }
 
@@ -119,22 +121,24 @@ Vector3 Wander::wander(Agent* agent)
 {
 	
 
-	Vector3 circleCenter;
-	circleCenter = agent->velocity;
-	circleCenter.normalise();
-	circleCenter = circleCenter * distance;
+	//Vector3 circleCenter;
+	//circleCenter = agent->velocity;
+	//circleCenter.normalise();
+	//circleCenter = circleCenter * distance;
 
-	Vector3 displacement(1, -1, 0);
-	displacement = displacement * radius;
+	//Vector3 displacement(1, -1, 0);
+	//displacement = displacement * radius;
 
 
-	
+	//
 
-	// Change wanderAngle slightly according to jitter;
-	float num = dis(gen);
-	//wanderAngle += ((dis(gen) * jitter) - (jitter * .5));
+	//// Change wanderAngle slightly according to jitter;
+	//float num = dis(gen);
+	////wanderAngle += ((dis(gen) * jitter) - (jitter * .5));
 
-	Vector3 wanderForce;
-	wanderForce = circleCenter + displacement;
-	return wanderForce;
+	//Vector3 wanderForce;
+	//wanderForce = circleCenter + displacement;
+	//return wanderForce;
+
+	return Vector3();
 }

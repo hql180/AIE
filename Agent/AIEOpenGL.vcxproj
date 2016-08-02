@@ -11,19 +11,26 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\AddPath.cpp" />
     <ClCompile Include="src\Agent.cpp" />
+    <ClCompile Include="src\Archer.cpp" />
+    <ClCompile Include="src\Arrow.cpp" />
+    <ClCompile Include="src\Attack.cpp" />
     <ClCompile Include="src\BaseApplication.cpp" />
     <ClCompile Include="src\BehaviourTree.cpp" />
     <ClCompile Include="src\Composite.cpp" />
+    <ClCompile Include="src\Decorator.cpp" />
     <ClCompile Include="src\Evade.cpp" />
     <ClCompile Include="src\Flee.cpp" />
     <ClCompile Include="src\Font.cpp" />
     <ClCompile Include="src\gl_core_4_4.c" />
     <ClCompile Include="src\Application2D.cpp" />
     <ClCompile Include="src\Graph.cpp" />
+    <ClCompile Include="src\Heal.cpp" />
     <ClCompile Include="src\IBehaviour.cpp" />
     <ClCompile Include="src\InCombat.cpp" />
     <ClCompile Include="src\InRange.cpp" />
+    <ClCompile Include="src\IsDead.cpp" />
     <ClCompile Include="src\LineOfSight.cpp" />
     <ClCompile Include="src\LowHealth.cpp" />
     <ClCompile Include="src\main.cpp" />
@@ -32,6 +39,7 @@
     <ClCompile Include="src\Scene.cpp" />
     <ClCompile Include="src\SceneNode.cpp" />
     <ClCompile Include="src\Seek.cpp" />
+    <ClCompile Include="src\SeekPath.cpp" />
     <ClCompile Include="src\Selector.cpp" />
     <ClCompile Include="src\SelectTarget.cpp" />
     <ClCompile Include="src\Sequence.cpp" />
@@ -40,21 +48,29 @@
     <ClCompile Include="src\StateMachine.cpp" />
     <ClCompile Include="src\Texture.cpp" />
     <ClCompile Include="src\Wander.cpp" />
+    <ClCompile Include="src\WanderPath.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\AddPath.h" />
     <ClInclude Include="src\Agent.h" />
+    <ClInclude Include="src\Archer.h" />
+    <ClInclude Include="src\Arrow.h" />
+    <ClInclude Include="src\Attack.h" />
     <ClInclude Include="src\BaseApplication.h" />
     <ClInclude Include="src\BehaviourTree.h" />
     <ClInclude Include="src\Composite.h" />
+    <ClInclude Include="src\Decorator.h" />
     <ClInclude Include="src\Evade.h" />
     <ClInclude Include="src\Flee.h" />
     <ClInclude Include="src\Font.h" />
     <ClInclude Include="src\gl_core_4_4.h" />
     <ClInclude Include="src\Application2D.h" />
     <ClInclude Include="src\Graph.h" />
+    <ClInclude Include="src\Heal.h" />
     <ClInclude Include="src\IBehaviour.h" />
     <ClInclude Include="src\InCombat.h" />
     <ClInclude Include="src\InRange.h" />
+    <ClInclude Include="src\IsDead.h" />
     <ClInclude Include="src\LineOfSight.h" />
     <ClInclude Include="src\LowHealth.h" />
     <ClInclude Include="src\PathFinder.h" />
@@ -62,6 +78,7 @@
     <ClInclude Include="src\Scene.h" />
     <ClInclude Include="src\SceneNode.h" />
     <ClInclude Include="src\Seek.h" />
+    <ClInclude Include="src\SeekPath.h" />
     <ClInclude Include="src\Selector.h" />
     <ClInclude Include="src\SelectTarget.h" />
     <ClInclude Include="src\Sequence.h" />
@@ -70,6 +87,7 @@
     <ClInclude Include="src\StateMachine.h" />
     <ClInclude Include="src\Texture.h" />
     <ClInclude Include="src\Wander.h" />
+    <ClInclude Include="src\WanderPath.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="MathLib\MathLib.vcxproj">

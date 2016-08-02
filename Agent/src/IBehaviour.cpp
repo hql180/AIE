@@ -16,3 +16,8 @@ Vector3 IBehaviour::truncate(Vector3 vec, float max)
 	}
 	return vec;
 }
+
+Status IBehaviour::update(Agent * agent, Application2D * pA2D, float dt)
+{
+	return Status();
+}

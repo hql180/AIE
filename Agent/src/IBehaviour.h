@@ -14,7 +14,7 @@ enum Status
 class IBehaviour 
 {
 public:
-	IBehaviour() : eStatus(INVALID), observer(nullptr) {};
+	IBehaviour() : eStatus(INVALID) {};
 	~IBehaviour();
 
 	static Vector3 truncate(Vector3 vec, float max);
@@ -23,6 +23,6 @@ public:
 
 	Status eStatus;
 
-	IBehaviour* observer;
+	std::vector<IBehaviour*> childBehaviours;
 };
 

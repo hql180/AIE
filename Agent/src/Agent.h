@@ -3,6 +3,8 @@
 #include "SceneNode.h"
 #include "SpriteBatch.h"
 #include "PathFinder.h"
+#include <list>
+#include "Graph.h"
 
 class IBehaviour;
 class Application2D;
@@ -32,6 +34,11 @@ public:
 	float visionRange;
 	float attackRange;
 	float maxViewAngle;
+	float attackTime;
+	float maxAttackTime;
+	float attackDamage;
+	float accuracy;
+	bool isDead;
 
 	int HP;
 	int maxHP;	
@@ -39,7 +46,9 @@ public:
 	Agent* target;
 	Agent* fleeTarget;
 
-	PathFinder* path;
+	PathFinder* pathFinder;
+	std::list<Graph::Node*> path;
+
 
 	std::vector<IBehaviour*> behaviourList;
 	

@@ -102,10 +102,35 @@ void Graph::RemoveNodeAt(Vector2 a_pos)
 	}
 }
 
-Graph::Node * Graph::findNode(Vector2 a_pos)
+void Graph::RemoveNodeAt(Vector2 a_pos, float radius)
+{
+	while (findNode(a_pos, radius))
+	{
+		Graph::Node* deleteThis = findNode(a_pos, radius);
+
+		for (int i = nodeList.size() - 1; i >= 0; --i)
+		{
+			for (int a = nodeList[i]->connections.size() - 1; a >= 0; --a)
+			{
+				if (nodeList[i]->connections[a].connection == deleteThis)
+				{
+					nodeList[i]->connections.erase(nodeList[i]->connections.begin() + a);
+				}
+			}
+		}
+		for (int i = nodeList.size() - 1; i >= 0; --i)
+			if (nodeList[i] == deleteThis)
+			{
+				nodeList.erase(nodeList.begin() + i);
+				delete deleteThis;
+			}
+	}
+}
+
+Graph::Node * Graph::findNode(Vector2 a_pos, float radius)
 {
 	for (auto const &it : nodeList)
-		if (it->pos.distance(a_pos) < 25)
+		if (it->pos.distance(a_pos) <= radius)
 			return it;
 	return nullptr;
 }

@@ -10,6 +10,7 @@ class Texture;
 class Font;
 class Agent;
 class Graph;
+class Arrow;
 class PathFinder;
 
 class Tree	
@@ -38,7 +39,12 @@ public:
 	virtual void draw();
 
 	std::vector<Agent*> agents;
+	std::vector<Arrow*> arrows;
 	std::vector<Tree*> trees;
+
+	Graph*			m_graph;
+	Texture*		m_arrow;
+
 
 protected:
 
@@ -46,8 +52,11 @@ protected:
 	Texture*		m_texture;
 	Texture*		m_tree;
 	Texture*		m_node;
+	
 	Font*			m_font;
-	Graph*			m_graph;
+	
+
+
 
 
 	Agent* mouse;

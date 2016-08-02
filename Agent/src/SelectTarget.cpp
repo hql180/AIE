@@ -20,7 +20,8 @@ Status SelectTarget::update(Agent * agent, Application2D * pA2D, float dt)
 	std::vector<Agent*> potentialTargets;
 	for (auto target : pA2D->agents)
 		if ((target->position - agent->position).magnitude() <= agent->visionRange)
-			potentialTargets.push_back(target);
+			if (target != agent)
+				potentialTargets.push_back(target);
 
 	if (potentialTargets.empty())
 		return FAILURE;
@@ -66,7 +67,7 @@ Status SelectTarget::update(Agent * agent, Application2D * pA2D, float dt)
 					treeInWay = true;
 				}
 			}
-			if (treeInWay = false)
+			if (treeInWay == false)
 			{
 				agent->target = target;
 				return SUCCESS;

@@ -40,6 +40,12 @@
     <Filter Include="Source Files\PathFinding">
       <UniqueIdentifier>{241e2a2f-12e4-4ac3-b350-182e21689e57}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Agents">
+      <UniqueIdentifier>{cee425e8-9a11-4c81-b51c-3793158e8e49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Agents">
+      <UniqueIdentifier>{c928c65c-a49c-4723-9b77-38ea96dafaa3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\BaseApplication.cpp">
@@ -59,9 +65,6 @@
     </ClCompile>
     <ClCompile Include="src\Font.cpp">
       <Filter>BaseCode</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Agent.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Scene.cpp">
       <Filter>Source Files</Filter>
@@ -129,6 +132,36 @@
     <ClCompile Include="src\PathFinder.cpp">
       <Filter>Source Files\PathFinding</Filter>
     </ClCompile>
+    <ClCompile Include="src\Decorator.cpp">
+      <Filter>Source Files\BehaviouralTree</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Attack.cpp">
+      <Filter>Source Files\BehaviouralTree\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Agent.cpp">
+      <Filter>Source Files\Agents</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Archer.cpp">
+      <Filter>Source Files\Agents</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Arrow.cpp">
+      <Filter>Source Files\Agents</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AddPath.cpp">
+      <Filter>Source Files\BehaviouralTree\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SeekPath.cpp">
+      <Filter>Source Files\BehaviouralTree\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IsDead.cpp">
+      <Filter>Source Files\BehaviouralTree\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Heal.cpp">
+      <Filter>Source Files\BehaviouralTree\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\WanderPath.cpp">
+      <Filter>Source Files\BehaviouralTree\Nodes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\gl_core_4_4.h">
@@ -145,9 +178,6 @@
     </ClInclude>
     <ClInclude Include="src\Font.h">
       <Filter>BaseCode</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Agent.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Application2D.h">
       <Filter>Header Files</Filter>
@@ -214,6 +244,36 @@
     </ClInclude>
     <ClInclude Include="src\PathFinder.h">
       <Filter>Source Files\PathFinding</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Decorator.h">
+      <Filter>Header Files\BehaviouralTree</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Attack.h">
+      <Filter>Header Files\BehaviouralTree\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Agent.h">
+      <Filter>Header Files\Agents</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Archer.h">
+      <Filter>Header Files\Agents</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Arrow.h">
+      <Filter>Header Files\Agents</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AddPath.h">
+      <Filter>Header Files\BehaviouralTree\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SeekPath.h">
+      <Filter>Header Files\BehaviouralTree\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IsDead.h">
+      <Filter>Header Files\BehaviouralTree\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Heal.h">
+      <Filter>Header Files\BehaviouralTree\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\WanderPath.h">
+      <Filter>Header Files\BehaviouralTree\Nodes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -55,7 +55,9 @@ public:
 
 	void RemoveNodeAt(Vector2 a_pos);
 
-	Node* findNode(Vector2 a_pos);
+	void RemoveNodeAt(Vector2 a_pos, float radius);
+
+	Node* findNode(Vector2 a_pos, float radius = 10);
 
 	std::vector<Node*> nodeList;
 };
