@@ -14,11 +14,12 @@ Arrow::Arrow(Agent* shooter, Application2D* pA2D)
 		sprite = pA2D->m_arrow;
 		position = shooter->position;
 		target = shooter->target;
-		maxVelocity = 100;
+		maxVelocity = 650;
 		attackDamage = shooter->attackDamage;
 		behaviourList.push_back(new Seek());
 		isDead = false;
 		velocity = shooter->velocity;
+		combatTimer = 1.2;
 	}
 	else
 		isDead = true;
@@ -34,7 +35,15 @@ Arrow::~Arrow()
 
 void Arrow::update(Application2D * pA2D, float dt)
 {
-	if (target && !target->isDead)
+	for (auto & tree : pA2D->trees)
+		if ((tree->position - position).magnitude() < tree->radius*(3 / 4.f))
+			isDead = true;
+
+	combatTimer -= dt;
+
+	if (combatTimer < 0)
+		isDead = true;
+	else if (target && !target->isDead)
 	{
 		force = Vector3(0, 0, 0);
 

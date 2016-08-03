@@ -15,13 +15,12 @@ Status Heal::update(Agent * agent, Application2D * pA2D, float dt)
 {
 	if (agent->HP < agent->maxHP)
 	{
-		agent->path.clear();
-		agent->HP += (40 * dt);
+		agent->HP += (.2 * agent->maxHP * dt);
 		return SUCCESS;
 	}
-	else
+	else if(agent->HP > agent->maxHP)
 	{
 		agent->HP = agent->maxHP;
-		return FAILURE;
 	}
+	return SUCCESS;
 }

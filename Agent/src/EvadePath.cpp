@@ -36,7 +36,7 @@ Status EvadePath::update(Agent * agent, Application2D * pA2D, float dt)
 
 		if (distanceFromTarget <= agent->visionRange)
 		{
-			Vector3 rayToTarget = Vector3::normalise(agent->target->position - agent->position);
+			Vector3 rayToTarget = Vector3::normalise(target->position - agent->position);
 			for (auto tree : pA2D->trees)
 			{
 				// Tree position projected onto raycast
@@ -66,7 +66,7 @@ Status EvadePath::update(Agent * agent, Application2D * pA2D, float dt)
 			}
 		}
 	}
-	forceToApply = forceToApply + agent->position;
+	forceToApply = forceToApply * 200 + agent->position;
 
 	if (agent->pathFinder)
 		delete agent->pathFinder;
@@ -97,7 +97,14 @@ Status EvadePath::update(Agent * agent, Application2D * pA2D, float dt)
 	
 	std::vector<Graph::Node*> closestEnd;
 
-	pA2D->m_graph->FindNodesInRange(closestEnd, forceToApply.x, forceToApply.y, 100);
+	pA2D->m_graph->FindNodesInRange(closestEnd, forceToApply.x, forceToApply.y, 50);
+
+	int counter = 50;
+
+	pA2D->m_graph->FindNodesInRange(closestEnd, agent->position.x, agent->position.y, counter);
+
+	while (closestEnd.empty())
+		pA2D->m_graph->FindNodesInRange(closestEnd, agent->position.x, agent->position.y, counter += 50);
 
 	std::sort(closestEnd.begin(), closestEnd.end(),
 		[&forceToApply](Graph::Node* a, Graph::Node* b)

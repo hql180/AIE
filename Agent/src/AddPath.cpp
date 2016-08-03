@@ -65,7 +65,7 @@ Status AddPath::update(Agent * agent, Application2D * pA2D, float dt)
 		std::sort(closestEnd.begin(), closestEnd.end(),
 			[agent](Graph::Node* a, Graph::Node* b)
 		{
-			Vector2 agentPos = Vector2(agent->position.x, agent->position.y);
+			Vector2 agentPos = Vector2(agent->target->position.x, agent->target->position.y);
 			return (a->pos - agentPos).magnitude() < (b->pos - agentPos).magnitude();
 		});
 
