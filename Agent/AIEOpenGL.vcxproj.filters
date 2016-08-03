@@ -162,7 +162,7 @@
     <ClCompile Include="src\WanderPath.cpp">
       <Filter>Source Files\BehaviouralTree\Nodes</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Huy%27s Beast Reborn\Documents\AIE\Agent\src\EvadePath.cpp">
+    <ClCompile Include="src\EvadePath.cpp">
       <Filter>Source Files\BehaviouralTree\Nodes</Filter>
     </ClCompile>
   </ItemGroup>
@@ -278,7 +278,7 @@
     <ClInclude Include="src\WanderPath.h">
       <Filter>Header Files\BehaviouralTree\Nodes</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Huy%27s Beast Reborn\Documents\AIE\Agent\src\EvadePath.h">
+    <ClInclude Include="src\EvadePath.h">
       <Filter>Header Files\BehaviouralTree\Nodes</Filter>
     </ClInclude>
   </ItemGroup>

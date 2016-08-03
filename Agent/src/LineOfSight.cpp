@@ -18,7 +18,7 @@ Status LineOfSight::update(Agent* agent, Application2D* pA2D, float dt)
 {
 	if (agent->target)
 	{
-		float distanceFromTarget = Vector3::magnitude(agent->target->position - agent->position);
+		float distanceFromTarget = (agent->target->position - agent->position).magnitude();
 		if (distanceFromTarget <= agent->visionRange)
 		{
 			float angleToTarget = acosf(Vector3::normalise(agent->velocity).dot(Vector3::normalise(agent->target->position)));

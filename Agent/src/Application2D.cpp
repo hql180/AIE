@@ -60,7 +60,9 @@ bool Application2D::startup() {
 
 	m_font = new Font("./bin/font/consolas.ttf", 32);
 
-	m_arrow = new Texture("./bin/textures/nodeTexture.png");
+	m_arrow = new Texture("./bin/textures/arrow.png");
+
+	leg = new Texture("./bin/textures/girl.png");
 
 	m_graph = new Graph();
 
@@ -89,12 +91,16 @@ bool Application2D::startup() {
 
 	std::uniform_int_distribution<int> treeSize(30, 75);
 
-	for (int i = 0; i < 50; ++i)
+	arrows.reserve(1000);
+
+	for (int i = 0; i < 80; ++i)
 		trees.push_back(new Tree(Vector3(disX(gen), disY(gen), 0), treeSize(gen)));
 
 	for (auto & tree : trees)
-		m_graph->RemoveNodeAt(Vector2(tree->position.x, tree->position.y), tree->radius/2);
+		m_graph->RemoveNodeAt(Vector2(tree->position.x, tree->position.y), tree->radius*(3/4.f));
 
+	///////////////// BEHAVIOUR TREE ///////////////////////
+	
 	Selector* fightOrWander = new Selector(); // Fight or Wander 0/3
 
 	Selector* fightOrFlight = new Selector(); // Fight or Flight 0/2
@@ -155,18 +161,46 @@ bool Application2D::startup() {
 
 	Sequence* heal = new Sequence(); // Heal 0/2
 
-	wanderOrHeal->childBehaviours.push_back(new Heal()); // Wander or Heal 0/2
+	Decorator * notInCombat = new Decorator();
 
-	wanderOrHeal->childBehaviours.push_back(new WanderPath()); // Wander or Heal 0/2
+	notInCombat->childBehaviours.push_back(new InCombat());
 
-	for (int i = 0; i < 10; ++i)
+	heal->childBehaviours.push_back(new EvadePath());
+
+	heal->childBehaviours.push_back(new SeekPath());
+
+	heal->childBehaviours.push_back(new Heal());
+
+	//wanderOrHeal->childBehaviours.push_back(new Heal()); // Wander or Heal 0/2
+
+	Sequence* wander = new Sequence;
+
+	wanderOrHeal->childBehaviours.push_back(wander); // Wander or Heal 0/2
+
+	wander->childBehaviours.push_back(new WanderPath());
+	wander->childBehaviours.push_back(new SeekPath());
+
+	///////////////////// END OF TREE ////////////////////////////////////////
+
+	//Selector* test = new Selector();
+
+	//test->childBehaviours.push_back(new SeekPath());
+	//test->childBehaviours.push_back(new WanderPath());
+	
+
+
+
+	for (int i = 0; i < 20; ++i)
 	{
 		agents.push_back(new Archer(m_texture, Vector3(disX(gen), disY(gen), 1)));
 		agents.back()->behaviourList.push_back(fightOrWander);
 	}
 
+	Archer* Legolas = new Archer(leg, Vector3(1280/2, 720/2, 1), 125, 150, 10, .1, 700, 900, 3);
+	Legolas->behaviourList.push_back(fightOrWander);
 	
-	
+	agents.push_back(Legolas);
+
 	//int counter = 0;
 	//for (auto & it : agents)
 	//{
@@ -211,13 +245,50 @@ bool Application2D::update(float deltaTime) {
 	if (hasWindowClosed() || isKeyPressed(GLFW_KEY_ESCAPE))
 		return false;
 
-	for (auto & it : agents)
+	// Delete dead agents and clean up any pointers;
+	for (auto agent : agents)
+	{
+		if (agent->isDead)
+		{
+			// Clear any targets on arrows for this agent
+			for (auto arrow : arrows)
+			{
+				if (arrow->target == agent)
+				{
+					arrow->target = nullptr;
+				}
+			}
+		}
+	}
+
+	agents.erase(std::remove_if(agents.begin(), agents.end(), [](Agent* a) 
+	{
+		if (a->isDead)
+		{
+			delete a;
+			return true;
+		}
+		return false;
+	}), agents.end());
+
+	for (auto it : agents)
+	{
 		it->update(this, deltaTime);
+	}
 
-	//std::remove_if(arrows.begin(), arrows.end(), [](Arrow* a) {return a->isDead;});
+	for (int i = 0; i < arrows.size(); ++i)
+		arrows[i]->update(this, deltaTime);
 
-	//for (int i = 0; i < arrows.size(); ++i)
-	//	arrows[i]->update(this, deltaTime);
+	arrows.erase(std::remove_if(arrows.begin(), arrows.end(), [](Arrow* a) 
+	{
+		if (a->isDead)
+		{
+			delete a;
+			return true;
+		}
+		return false;
+	}), arrows.end());
+
 
 	//if (BaseApplication::isKeyPressed(GLFW_KEY_S))
 	
@@ -251,7 +322,6 @@ void Application2D::draw() {
 	
 
 	for (auto& arrow : arrows)
-		if (arrow->isDead == false)
 			arrow->draw(m_spriteBatch);
 	
 

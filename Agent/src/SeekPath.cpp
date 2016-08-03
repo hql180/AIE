@@ -18,9 +18,11 @@ Status SeekPath::update(Agent * agent, Application2D * pA2D, float dt)
 		agent->combatTimer -= dt;
 		Vector3 force = Vector3::normalise(Vector3(agent->path.front()->pos.x, agent->path.front()->pos.y, 1) - agent->position) * agent->maxVelocity;
 		
-		if ((Vector3(agent->path.front()->pos.x, agent->path.front()->pos.y, 1) - agent->position).magnitude() < 5)
+		if ((Vector3(agent->path.front()->pos.x, agent->path.front()->pos.y, 1) - agent->position).magnitude() < 2)
+		{
+			agent->currentNode = agent->path.front();
 			agent->path.pop_front();
-
+		}
 		agent->AddForce(force - agent->velocity);
 
 		return SUCCESS;		

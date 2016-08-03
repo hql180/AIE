@@ -25,6 +25,7 @@ Archer::Archer(Texture * a_sprite, Vector3 pos, float a_maxVel, int hp, float a_
 	isDead = false;
 
 	pathFinder = nullptr;
+	currentNode = nullptr;
 }
 
 Archer::~Archer()

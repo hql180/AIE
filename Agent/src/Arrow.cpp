@@ -14,7 +14,7 @@ Arrow::Arrow(Agent* shooter, Application2D* pA2D)
 		sprite = pA2D->m_arrow;
 		position = shooter->position;
 		target = shooter->target;
-		maxVelocity = 200;
+		maxVelocity = 100;
 		attackDamage = shooter->attackDamage;
 		behaviourList.push_back(new Seek());
 		isDead = false;
@@ -34,42 +34,38 @@ Arrow::~Arrow()
 
 void Arrow::update(Application2D * pA2D, float dt)
 {
-	if (target && target->isDead == false)
+	if (target && !target->isDead)
 	{
 		force = Vector3(0, 0, 0);
-		
-		float localDT = dt;
-		if (dt > 1)
-			localDT = 1;
 
 		for (auto & it : behaviourList)
 		{
-			it->update(this, pA2D, localDT);
+			it->update(this, pA2D, dt);
 		}
 
-		velocity = velocity + force * localDT;
+		velocity = velocity + force * dt;
 
 		IBehaviour::truncate(velocity, maxVelocity);
 
-		position = position + velocity * localDT;
+		position = position + velocity * dt;
 
 		Vector3 temp = Vector3::normalise(velocity);
 
 		float angle = atan2(temp.y, temp.x);
 
-		local_transform = Matrix3::CreateRotation(angle) * Matrix3::CreateTranslation(position);
+		local_transform = Matrix3::CreateRotation(angle + 3.14159) * Matrix3::CreateTranslation(position);
 
 		UpdateTransforms();
 
-		if (Vector3(target->position - position).magnitude() <= 5)
+		if (Vector3(target->position - position).magnitude() <= 10)
 		{
 			target->combatTimer = 5;
 			target->HP -= attackDamage;
 			isDead = true;
 		}
 	}
-	isDead = true;
-
+	else
+		isDead = true;
 }
 
 void Arrow::draw(SpriteBatch * spriteBatch)

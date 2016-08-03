@@ -40,11 +40,12 @@ public:
 	float accuracy;
 	bool isDead;
 
-	int HP;
-	int maxHP;	
+	float HP;
+	float maxHP;	
 
 	Agent* target;
 	Agent* fleeTarget;
+	Graph::Node* currentNode;
 
 	PathFinder* pathFinder;
 	std::list<Graph::Node*> path;

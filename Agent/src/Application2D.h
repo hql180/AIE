@@ -52,6 +52,7 @@ protected:
 	Texture*		m_texture;
 	Texture*		m_tree;
 	Texture*		m_node;
+	Texture*		leg;
 	
 	Font*			m_font;
 	

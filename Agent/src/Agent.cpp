@@ -2,6 +2,8 @@
 #include "IBehaviour.h"
 #include "Application2D.h"
 
+#include <vector>
+
 
 Agent::Agent()
 {
@@ -18,11 +20,12 @@ Agent::Agent(Texture * a_sprite)
 	velocity = Vector3(1, 1, 1);
 	combatTimer = 0;
 	isDead = false;
-
-
-
+	pathFinder = nullptr;
 	target = nullptr;
 	fleeTarget = nullptr;
+	currentNode = nullptr;
+
+
 }
 
 

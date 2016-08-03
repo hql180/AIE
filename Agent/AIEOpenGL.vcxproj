@@ -11,7 +11,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\Huy%27s Beast Reborn\Documents\AIE\Agent\src\EvadePath.cpp" />
     <ClCompile Include="src\AddPath.cpp" />
     <ClCompile Include="src\Agent.cpp" />
     <ClCompile Include="src\Archer.cpp" />
@@ -22,6 +21,7 @@
     <ClCompile Include="src\Composite.cpp" />
     <ClCompile Include="src\Decorator.cpp" />
     <ClCompile Include="src\Evade.cpp" />
+    <ClCompile Include="src\EvadePath.cpp" />
     <ClCompile Include="src\Flee.cpp" />
     <ClCompile Include="src\Font.cpp" />
     <ClCompile Include="src\gl_core_4_4.c" />
@@ -52,7 +52,6 @@
     <ClCompile Include="src\WanderPath.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\Huy%27s Beast Reborn\Documents\AIE\Agent\src\EvadePath.h" />
     <ClInclude Include="src\AddPath.h" />
     <ClInclude Include="src\Agent.h" />
     <ClInclude Include="src\Archer.h" />
@@ -63,6 +62,7 @@
     <ClInclude Include="src\Composite.h" />
     <ClInclude Include="src\Decorator.h" />
     <ClInclude Include="src\Evade.h" />
+    <ClInclude Include="src\EvadePath.h" />
     <ClInclude Include="src\Flee.h" />
     <ClInclude Include="src\Font.h" />
     <ClInclude Include="src\gl_core_4_4.h" />

@@ -25,43 +25,58 @@ Status AddPath::update(Agent * agent, Application2D * pA2D, float dt)
 	if (agent->pathFinder != nullptr)
 		delete agent->pathFinder;
 
-	agent->pathFinder = new PathFinder();
+	agent->pathFinder = new PathFinder();	
 
-	Graph::Node* start;
-	
-	std::vector<Graph::Node*> closestStart;
-	std::vector<Graph::Node*> closestEnd;
-
-	pA2D->m_graph->FindNodesInRange(closestEnd, agent->target->position.x, agent->target->position.y, 50);
-
-	if (!agent->path.empty())
-		start = agent->path.front();
-	else
+	if (!agent->currentNode)
 	{
-		pA2D->m_graph->FindNodesInRange(closestStart, agent->position.x, agent->position.y, 50);
+		std::vector<Graph::Node*> closestStart;
+
+		int counter = 50;
+
+		pA2D->m_graph->FindNodesInRange(closestStart, agent->position.x, agent->position.y, counter);
+
+		while (closestStart.empty())
+			pA2D->m_graph->FindNodesInRange(closestStart, agent->position.x, agent->position.y, counter += 50);
 
 		std::sort(closestStart.begin(), closestStart.end(),
 			[agent](Graph::Node* a, Graph::Node* b)
-		{			
+		{
 			Vector2 agentPos = Vector2(agent->position.x, agent->position.y);
 			return (a->pos - agentPos).magnitude() < (b->pos - agentPos).magnitude();
 		});
 
-		start = closestStart.front();
+		agent->currentNode = closestStart.front();
 	}
+	
 
-	std::sort(closestEnd.begin(), closestEnd.end(),
-		[agent](Graph::Node* a, Graph::Node* b)
+	Graph::Node* end;
+
+	if (!agent->target->currentNode)
 	{
-		Vector2 agentPos = Vector2(agent->position.x, agent->position.y);
-		return (a->pos - agentPos).magnitude() < (b->pos - agentPos).magnitude();
-	});	
+		std::vector<Graph::Node*> closestEnd;
 
-	Graph::Node* end = closestEnd.front();
+		int counter = 50;
+
+		pA2D->m_graph->FindNodesInRange(closestEnd, agent->target->position.x, agent->target->position.y, counter);
+
+		while (closestEnd.empty())
+			pA2D->m_graph->FindNodesInRange(closestEnd, agent->target->position.x, agent->target->position.y, counter += 50);
+
+		std::sort(closestEnd.begin(), closestEnd.end(),
+			[agent](Graph::Node* a, Graph::Node* b)
+		{
+			Vector2 agentPos = Vector2(agent->position.x, agent->position.y);
+			return (a->pos - agentPos).magnitude() < (b->pos - agentPos).magnitude();
+		});
+
+		end = closestEnd.front();
+	}
+	else
+		end = agent->target->currentNode;
 
 	agent->path.clear();
 
-	agent->pathFinder->AStar(start, end, agent->path);
+	agent->pathFinder->AStar(agent->currentNode, end, agent->path);
 	
 	return SUCCESS;
 }
