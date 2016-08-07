@@ -28,8 +28,8 @@ Arrow::Arrow(Agent* shooter, Application2D* pA2D)
 
 Arrow::~Arrow()
 {
-	//for (int i = behaviourList.size() - 1; i >= 0; --i)
-	//	delete behaviourList[i];
+	for (int i = behaviourList.size() - 1; i >= 0; --i)
+		delete behaviourList[i];
 	
 }
 

@@ -60,13 +60,21 @@ Status EvadePath::update(Agent * agent, Application2D * pA2D, float dt)
 
 				if (distance > tree->radius)
 				{
-					Vector3 force = (Vector3::normalise(agent->position - target->position) * agent->maxVelocity) - agent->velocity;
-					forceToApply = IBehaviour::truncate(forceToApply + force, agent->maxVelocity);
+					Vector3 force = (Vector3::normalise(agent->position + agent->velocity - target->position) * agent->maxVelocity) - agent->velocity;
+					forceToApply = forceToApply + force;
+
+					//agent->AddForce(force - agent->velocity);
 				}				
 			}
 		}
 	}
-	forceToApply = forceToApply * 200 + agent->position;
+
+	if (forceToApply.x == 0)
+		return FAILURE;
+
+	forceToApply = forceToApply.normalise() * agent->maxVelocity + agent->position;
+
+
 
 	if (agent->pathFinder)
 		delete agent->pathFinder;
@@ -101,10 +109,10 @@ Status EvadePath::update(Agent * agent, Application2D * pA2D, float dt)
 
 	int counter = 50;
 
-	pA2D->m_graph->FindNodesInRange(closestEnd, agent->position.x, agent->position.y, counter);
+	pA2D->m_graph->FindNodesInRange(closestEnd, forceToApply.x, forceToApply.y, counter);
 
 	while (closestEnd.empty())
-		pA2D->m_graph->FindNodesInRange(closestEnd, agent->position.x, agent->position.y, counter += 50);
+		pA2D->m_graph->FindNodesInRange(closestEnd, forceToApply.x, forceToApply.y, counter += 50);
 
 	std::sort(closestEnd.begin(), closestEnd.end(),
 		[&forceToApply](Graph::Node* a, Graph::Node* b)

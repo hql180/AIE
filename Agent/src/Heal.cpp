@@ -15,7 +15,7 @@ Status Heal::update(Agent * agent, Application2D * pA2D, float dt)
 {
 	if (agent->HP < agent->maxHP)
 	{
-		agent->HP += (.2 * agent->maxHP * dt);
+		agent->HP += (20 * dt);
 		return SUCCESS;
 	}
 	else if(agent->HP > agent->maxHP)

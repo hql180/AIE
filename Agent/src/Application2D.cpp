@@ -92,7 +92,7 @@ bool Application2D::startup() {
 
 	std::uniform_int_distribution<int> treeSize(30, 75);
 
-	arrows.reserve(1000);
+	arrows.reserve(100);
 
 	for (int i = 0; i < 50; ++i)
 		trees.push_back(new Tree(Vector3(disX(gen), disY(gen), 0), treeSize(gen))); // Adding Random Trees
@@ -119,12 +119,20 @@ bool Application2D::startup() {
 	runAway->childBehaviours.push_back(new EvadePath()); // Run Away 3/3
 	runAway->childBehaviours.push_back(new Heal());
 	runAway->childBehaviours.push_back(new SeekPath()); // RunAway 4
+	runAway->childBehaviours.push_back(new LineOfSight());
+	runAway->childBehaviours.push_back(new Attack());
 
 	Sequence* goodFightingCondition = new Sequence(); // Good Fighting Condition 0/2
 
 	fightOrFlight->childBehaviours.push_back(goodFightingCondition); // Fight or Flight 2/2	
 
 	Selector* targetOrPath = new Selector(); // Target or Path 0/2
+
+	Decorator* notLowHealth = new Decorator();
+
+	notLowHealth->childBehaviours.push_back(new LowHealth());
+
+	goodFightingCondition->childBehaviours.push_back(notLowHealth);
 
 	goodFightingCondition->childBehaviours.push_back(targetOrPath); // Good Fighting Condition 2/2
 
@@ -193,19 +201,31 @@ bool Application2D::startup() {
 
 
 
-	for (int i = 0; i < 20; ++i)
+	for (int i = 0; i < 30; ++i)
 	{
 		agents.push_back(new Archer(m_texture, Vector3(disX(gen), disY(gen), 1))); // Adding bunch of archers
 		agents.back()->behaviourList.push_back(fightOrWander);
 	}
 
-	//agents.push_back(new Archer(m_texture, Vector3( 600, 340, 1)));
-	//agents.back()->behaviourList.push_back(fightOrWander);
+	agents.push_back(new Archer(m_texture, Vector3( 600, 340, 1)));
+	agents.back()->behaviourList.push_back(fightOrWander);
 
-	Archer* Legolas = new Archer(leg, Vector3(550, 320, 1), 100, 150, 10, .15, 450, 600, 2.5); // Adding most likey winner of simulation
+	Archer* Legolas = new Archer(leg, Vector3(550, 320, 1), 100, 150, 15, .15, 450, 600, 2); // Adding most likey winner of simulation
 	Legolas->behaviourList.push_back(fightOrWander);
 	
 	agents.push_back(Legolas);
+
+	Archer* Harry = new Archer(m_texture, Vector3(100, 100, 1), 500, 250, 40, .3, 75, 600);
+
+	Harry->behaviourList.push_back(fightOrWander);
+
+	agents.push_back(Harry);
+
+	Archer* Jerry = new Archer(m_texture, Vector3(1000, 100, 1), 40, 150, 90, 2, 600, 800, 3);
+
+	Jerry->behaviourList.push_back(fightOrWander);
+
+	agents.push_back(Jerry);
 
 	//int counter = 0;
 	//for (auto & it : agents)
