@@ -23,7 +23,7 @@ Status Attack::update(Agent * agent, Application2D * pA2D, float dt)
 			pA2D->arrows.push_back(new Arrow(agent, pA2D));
 			agent->attackTime = agent->maxAttackTime;
 			agent->combatTimer = 5;
-			agent->velocity = agent->velocity * .3;
+			agent->velocity = agent->velocity * .5;
 			return SUCCESS;
 		}
 	}

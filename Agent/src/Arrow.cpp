@@ -14,12 +14,14 @@ Arrow::Arrow(Agent* shooter, Application2D* pA2D)
 		sprite = pA2D->m_arrow;
 		position = shooter->position;
 		target = shooter->target;
-		maxVelocity = 650;
+		maxVelocity = 600;
 		attackDamage = shooter->attackDamage;
 		behaviourList.push_back(new Seek());
 		isDead = false;
 		velocity = shooter->velocity;
-		combatTimer = 1.2;
+		//velocity = velocity.normalise() * (maxVelocity/2);
+		
+		combatTimer = 1;
 	}
 	else
 		isDead = true;

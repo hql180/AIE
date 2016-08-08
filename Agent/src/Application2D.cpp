@@ -83,7 +83,8 @@ bool Application2D::startup() {
 				if (src != dest)
 					m_graph->AddConnection(src, dest);	// Connecting Path Nodes
 
-	std::mt19937 gen;
+	std::random_device rd;
+	std::mt19937 gen(rd());
 	std::uniform_int_distribution<int> dis(0, 9);
 
 	std::uniform_int_distribution<int> disX(50, 1230);
@@ -92,13 +93,17 @@ bool Application2D::startup() {
 
 	std::uniform_int_distribution<int> treeSize(30, 75);
 
+	std::uniform_int_distribution<int> treeX(2, 52);
+
+	std::uniform_int_distribution<int> treeY(2, 29);
+
 	arrows.reserve(100);
 
 	for (int i = 0; i < 50; ++i)
-		trees.push_back(new Tree(Vector3(disX(gen), disY(gen), 0), treeSize(gen))); // Adding Random Trees
+		trees.push_back(new Tree(Vector3(disX(gen), disY(gen), 1), treeSize(gen))); // Adding Random Trees
 
 	for (auto & tree : trees)
-		m_graph->RemoveNodeAt(Vector2(tree->position.x, tree->position.y), tree->radius*(3/4.f)); // Removing Nodes around radius of tree
+		m_graph->RemoveNodeAt(Vector2(tree->position.x, tree->position.y), tree->radius*(3/5.f)); // Removing Nodes around radius of tree
 
 	///////////////// BEHAVIOUR TREE ///////////////////////
 	
@@ -110,6 +115,20 @@ bool Application2D::startup() {
 
 	fightOrWander->childBehaviours.push_back(fightOrFlight); // Fight or Wander 2/3
 
+	//Sequence* runAttack = new Sequence();
+
+	//fightOrFlight->childBehaviours.push_back(runAttack);
+
+	//runAttack->childBehaviours.push_back(new LowHealth());
+	//runAttack->childBehaviours.push_back(new InCombat());
+	//runAttack->childBehaviours.push_back(new SelectTarget());
+	//runAttack->childBehaviours.push_back(new LineOfSight());
+	//runAttack->childBehaviours.push_back(new Attack());
+	//runAttack->childBehaviours.push_back(new EvadePath()); // Run Away 3/3
+	//runAttack->childBehaviours.push_back(new Heal());
+	//runAttack->childBehaviours.push_back(new SeekPath()); // RunAway 4
+														
+
 	Sequence* runAway = new Sequence(); // Run Away 0/3
 
 	fightOrFlight->childBehaviours.push_back(runAway); // Fight or Flight 1/2
@@ -119,8 +138,8 @@ bool Application2D::startup() {
 	runAway->childBehaviours.push_back(new EvadePath()); // Run Away 3/3
 	runAway->childBehaviours.push_back(new Heal());
 	runAway->childBehaviours.push_back(new SeekPath()); // RunAway 4
-	runAway->childBehaviours.push_back(new LineOfSight());
-	runAway->childBehaviours.push_back(new Attack());
+	//runAway->childBehaviours.push_back(new LineOfSight());
+	//runAway->childBehaviours.push_back(new Attack());
 
 	Sequence* goodFightingCondition = new Sequence(); // Good Fighting Condition 0/2
 
@@ -154,6 +173,7 @@ bool Application2D::startup() {
 
 	attack->childBehaviours.push_back(new InRange()); // ATTACK 1/2
 	attack->childBehaviours.push_back(new LineOfSight());
+	attack->childBehaviours.push_back(new SeekPath());
 	attack->childBehaviours.push_back(new Attack()); // ATTACK 2/2
 
 	attackOrClose->childBehaviours.push_back(new SeekPath()); // Attack or seek 2/2
@@ -210,18 +230,18 @@ bool Application2D::startup() {
 	agents.push_back(new Archer(m_texture, Vector3( 600, 340, 1)));
 	agents.back()->behaviourList.push_back(fightOrWander);
 
-	Archer* Legolas = new Archer(leg, Vector3(550, 320, 1), 100, 150, 15, .15, 450, 600, 2); // Adding most likey winner of simulation
+	Archer* Legolas = new Archer(leg, Vector3(550, 320, 1), 100, 150, 15, .15, 400, 600, 2); // Adding most likey winner of simulation
 	Legolas->behaviourList.push_back(fightOrWander);
 	
 	agents.push_back(Legolas);
 
-	Archer* Harry = new Archer(m_texture, Vector3(100, 100, 1), 500, 250, 40, .3, 75, 600);
+	Archer* Harry = new Archer(leg, Vector3(100, 100, 1), 500, 250, 40, .35, 65, 600);
 
 	Harry->behaviourList.push_back(fightOrWander);
 
 	agents.push_back(Harry);
 
-	Archer* Jerry = new Archer(m_texture, Vector3(1000, 100, 1), 40, 150, 90, 2, 600, 800, 3);
+	Archer* Jerry = new Archer(leg, Vector3(1000, 100, 1), 40, 150, 90, 2, 600, 800, 3);
 
 	Jerry->behaviourList.push_back(fightOrWander);
 
