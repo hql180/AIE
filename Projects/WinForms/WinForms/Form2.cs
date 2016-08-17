@@ -46,5 +46,12 @@ namespace WinForms
                 }
             }
         }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            Snake newMDIChild = new Snake();
+            newMDIChild.MdiParent = this;
+            newMDIChild.Show();
+        }
     }
 }

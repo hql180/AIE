@@ -67,13 +67,13 @@ namespace WinForms
             }
             else
             {
-                if (Input.KeyPressed(Keys.Right) && Settings.direction != Direction.Left)
+                if ((Input.KeyPressed(Keys.Right) || Input.KeyPressed(Keys.NumPad6)) && Settings.direction != Direction.Left)
                     Settings.direction = Direction.Right;
-                else if (Input.KeyPressed(Keys.Left) && Settings.direction != Direction.Right)
+                else if ((Input.KeyPressed(Keys.Left) || Input.KeyPressed(Keys.NumPad4)) && Settings.direction != Direction.Right)
                     Settings.direction = Direction.Left;
-                else if (Input.KeyPressed(Keys.Up) && Settings.direction != Direction.Down)
+                else if ((Input.KeyPressed(Keys.Up) || Input.KeyPressed(Keys.NumPad8)) && Settings.direction != Direction.Down)
                     Settings.direction = Direction.Up;
-                else if (Input.KeyPressed(Keys.Down) && Settings.direction != Direction.Up)
+                else if ((Input.KeyPressed(Keys.Down) || Input.KeyPressed(Keys.NumPad5)) && Settings.direction != Direction.Up)
                     Settings.direction = Direction.Down;
 
                 MovePlayer();
@@ -93,7 +93,7 @@ namespace WinForms
         {
             Graphics canvas = e.Graphics;
             
-            if(Settings.GameOver != false)
+            if(!Settings.GameOver)
             {
                 Brush snakeColour;
 
@@ -102,19 +102,17 @@ namespace WinForms
                     if (i == 0)
                         snakeColour = Brushes.Aquamarine;
                     else
-                        snakeColour = Brushes.Azure;
+                        snakeColour = Brushes.Beige;
 
                     canvas.FillEllipse(snakeColour,
                         new Rectangle(Snakey[i].x * Settings.Width,
                                         Snakey[i].y * Settings.Height,
                                         Settings.Width, Settings.Height));
 
-                    canvas.FillEllipse(Brushes.AliceBlue,
+                    canvas.FillEllipse(Brushes.MediumVioletRed,
                         new Rectangle(food.x * Settings.Width,
                                         food.y * Settings.Height,
                                         Settings.Width, Settings.Height));
-
-
                 }
             }
             else
@@ -148,12 +146,21 @@ namespace WinForms
                     }
 
                     int maxXPos = sCanvas.Size.Width / Settings.Width;
-                    int maxYPos = sCanvas.Size.Width / Settings.Height;
+                    int maxYPos = sCanvas.Size.Height / Settings.Height;
 
-                    if (Snakey[i].x <0 || Snakey[i].y < 0||Snakey[i].x > maxXPos||Snakey[i].y > maxYPos)
-                    {
-                        Die();
-                    }
+                    //if (Snakey[i].x <0 || Snakey[i].y < 0||Snakey[i].x > maxXPos||Snakey[i].y > maxYPos)
+                    //{
+                    //    Die();
+                    //}
+
+                    if (Snakey[i].x < 0)
+                        Snakey[i].x += maxXPos + 1;
+                    else if (Snakey[i].x > maxXPos)
+                        Snakey[i].x -= maxXPos - 1;
+                    else if (Snakey[i].y < 0)
+                        Snakey[i].y += maxYPos + 1;
+                    else if (Snakey[i].y > maxYPos)
+                        Snakey[i].y -= maxYPos - 1;
 
                     for (int j = 1; j < Snakey.Count; ++j)
                     {
@@ -163,17 +170,54 @@ namespace WinForms
 
                     if (food.x == Snakey[0].x && food.y == Snakey[0].y)
                         Eat();
-
                 }
                 else
                 {
                     Snakey[i].x = Snakey[i - 1].x;
                     Snakey[i].y = Snakey[i - 1].y;
-                }
-
-                
-
+                }              
             }
+        }
+
+        private void Die()
+        {
+            Settings.GameOver = true;
+        }
+
+        private void Eat()
+        {
+            Circle food = new Circle();
+            food.x = Snakey[Snakey.Count - 1].x;
+            food.y = Snakey[Snakey.Count - 1].y;
+
+            Snakey.Add(food);
+
+            //GenerateFood();
+
+            Settings.Score += Settings.Points;
+            scoreValue.Text = Settings.Score.ToString();
+
+
+        }
+
+        private void Snake_KeyDown(object sender, KeyEventArgs e)
+        {
+            Input.ChangeState(e.KeyCode, true);
+        }
+
+        private void Snake_KeyUp(object sender, KeyEventArgs e)
+        {
+            Input.ChangeState(e.KeyCode, false);
+        }
+
+        private void Snake_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

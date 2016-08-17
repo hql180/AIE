@@ -26,6 +26,5 @@ namespace WinForms
         {
             keyTable[key] = state;
         }
-
     }
 }

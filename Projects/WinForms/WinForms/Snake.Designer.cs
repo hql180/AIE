@@ -34,14 +34,16 @@
             this.scoreValue = new System.Windows.Forms.Label();
             this.gameTimer = new System.Windows.Forms.Timer(this.components);
             this.gameOver = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.sCanvas)).BeginInit();
             this.SuspendLayout();
             // 
             // sCanvas
             // 
+            this.sCanvas.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.sCanvas.Location = new System.Drawing.Point(12, 12);
             this.sCanvas.Name = "sCanvas";
-            this.sCanvas.Size = new System.Drawing.Size(505, 440);
+            this.sCanvas.Size = new System.Drawing.Size(691, 507);
             this.sCanvas.TabIndex = 0;
             this.sCanvas.TabStop = false;
             this.sCanvas.Paint += new System.Windows.Forms.PaintEventHandler(this.sCanvas_Paint);
@@ -49,7 +51,7 @@
             // score
             // 
             this.score.AutoSize = true;
-            this.score.Location = new System.Drawing.Point(524, 13);
+            this.score.Location = new System.Drawing.Point(709, 39);
             this.score.Name = "score";
             this.score.Size = new System.Drawing.Size(35, 13);
             this.score.TabIndex = 1;
@@ -59,7 +61,7 @@
             // scoreValue
             // 
             this.scoreValue.AutoSize = true;
-            this.scoreValue.Location = new System.Drawing.Point(610, 13);
+            this.scoreValue.Location = new System.Drawing.Point(782, 39);
             this.scoreValue.Name = "scoreValue";
             this.scoreValue.Size = new System.Drawing.Size(0, 13);
             this.scoreValue.TabIndex = 2;
@@ -74,17 +76,33 @@
             this.gameOver.Text = "label1";
             this.gameOver.Visible = false;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.SystemColors.Control;
+            this.label1.Location = new System.Drawing.Point(722, 154);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(108, 13);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Use numpad to move";
+            this.label1.Click += new System.EventHandler(this.label1_Click_1);
+            // 
             // Snake
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(682, 464);
+            this.ClientSize = new System.Drawing.Size(1106, 557);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.gameOver);
             this.Controls.Add(this.scoreValue);
             this.Controls.Add(this.score);
             this.Controls.Add(this.sCanvas);
+            this.KeyPreview = true;
             this.Name = "Snake";
             this.Text = "Snake";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Snake_KeyDown);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Snake_KeyPress);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Snake_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.sCanvas)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -98,5 +116,6 @@
         private System.Windows.Forms.Label scoreValue;
         private System.Windows.Forms.Timer gameTimer;
         private System.Windows.Forms.Label gameOver;
+        private System.Windows.Forms.Label label1;
     }
 }
