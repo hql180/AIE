@@ -30,26 +30,38 @@
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemNewFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.TileMapMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.tileHeight = new System.Windows.Forms.NumericUpDown();
+            this.tileWidth = new System.Windows.Forms.NumericUpDown();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.refreshButton = new System.Windows.Forms.Button();
+            this.TileZoom = new System.Windows.Forms.Label();
+            this.trackTileZoom = new System.Windows.Forms.TrackBar();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
+            this.gridWidth = new System.Windows.Forms.NumericUpDown();
+            this.gridHeight = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.tileBox = new System.Windows.Forms.PictureBox();
+            this.mapBox = new System.Windows.Forms.PictureBox();
+            this.tilePanel = new System.Windows.Forms.Panel();
+            this.MapPanel = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tileHeight)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tileWidth)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackTileZoom)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridWidth)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridHeight)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tileBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mapBox)).BeginInit();
+            this.tilePanel.SuspendLayout();
+            this.MapPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -65,41 +77,122 @@
             // 
             // fileToolStripMenuItem
             // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openToolStripMenuItem,
+            this.loadToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "&File";
             // 
-            // numericUpDown1
+            // openToolStripMenuItem
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(122, 16);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(37, 20);
-            this.numericUpDown1.TabIndex = 2;
+            this.openToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuItemNewFile});
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Text = "&Open";
             // 
-            // numericUpDown2
+            // menuItemNewFile
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(122, 42);
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(37, 20);
-            this.numericUpDown2.TabIndex = 3;
+            this.menuItemNewFile.Name = "menuItemNewFile";
+            this.menuItemNewFile.Size = new System.Drawing.Size(152, 22);
+            this.menuItemNewFile.Text = "&New File";
+            this.menuItemNewFile.Click += new System.EventHandler(this.menuItemNewFile_Click);
+            // 
+            // loadToolStripMenuItem
+            // 
+            this.loadToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.TileMapMenu});
+            this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.loadToolStripMenuItem.Text = "&Load";
+            // 
+            // TileMapMenu
+            // 
+            this.TileMapMenu.Name = "TileMapMenu";
+            this.TileMapMenu.Size = new System.Drawing.Size(120, 22);
+            this.TileMapMenu.Text = "&Tile Map";
+            this.TileMapMenu.Click += new System.EventHandler(this.TileMapMenu_Click);
+            // 
+            // tileHeight
+            // 
+            this.tileHeight.Location = new System.Drawing.Point(122, 16);
+            this.tileHeight.Name = "tileHeight";
+            this.tileHeight.Size = new System.Drawing.Size(37, 20);
+            this.tileHeight.TabIndex = 2;
+            this.tileHeight.Value = new decimal(new int[] {
+            32,
+            0,
+            0,
+            0});
+            this.tileHeight.ValueChanged += new System.EventHandler(this.tileHeight_ValueChanged);
+            // 
+            // tileWidth
+            // 
+            this.tileWidth.Location = new System.Drawing.Point(122, 42);
+            this.tileWidth.Name = "tileWidth";
+            this.tileWidth.Size = new System.Drawing.Size(37, 20);
+            this.tileWidth.TabIndex = 3;
+            this.tileWidth.Value = new decimal(new int[] {
+            32,
+            0,
+            0,
+            0});
+            this.tileWidth.ValueChanged += new System.EventHandler(this.tileWidth_ValueChanged);
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.refreshButton);
+            this.groupBox1.Controls.Add(this.TileZoom);
+            this.groupBox1.Controls.Add(this.trackTileZoom);
             this.groupBox1.Controls.Add(this.checkBox1);
-            this.groupBox1.Controls.Add(this.numericUpDown4);
-            this.groupBox1.Controls.Add(this.numericUpDown3);
+            this.groupBox1.Controls.Add(this.gridWidth);
+            this.groupBox1.Controls.Add(this.gridHeight);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.numericUpDown2);
-            this.groupBox1.Controls.Add(this.numericUpDown1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 37);
+            this.groupBox1.Controls.Add(this.tileWidth);
+            this.groupBox1.Controls.Add(this.tileHeight);
+            this.groupBox1.Location = new System.Drawing.Point(12, 27);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(169, 174);
+            this.groupBox1.Size = new System.Drawing.Size(326, 184);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tile Settings";
+            // 
+            // refreshButton
+            // 
+            this.refreshButton.Location = new System.Drawing.Point(6, 145);
+            this.refreshButton.Name = "refreshButton";
+            this.refreshButton.Size = new System.Drawing.Size(75, 23);
+            this.refreshButton.TabIndex = 13;
+            this.refreshButton.Text = "Refresh";
+            this.refreshButton.UseVisualStyleBackColor = true;
+            this.refreshButton.Click += new System.EventHandler(this.refreshButton_Click);
+            // 
+            // TileZoom
+            // 
+            this.TileZoom.AutoSize = true;
+            this.TileZoom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TileZoom.Location = new System.Drawing.Point(204, 16);
+            this.TileZoom.Name = "TileZoom";
+            this.TileZoom.Size = new System.Drawing.Size(62, 15);
+            this.TileZoom.TabIndex = 12;
+            this.TileZoom.Text = "Tile Zoom";
+            // 
+            // trackTileZoom
+            // 
+            this.trackTileZoom.Location = new System.Drawing.Point(186, 34);
+            this.trackTileZoom.Minimum = 1;
+            this.trackTileZoom.Name = "trackTileZoom";
+            this.trackTileZoom.Size = new System.Drawing.Size(104, 45);
+            this.trackTileZoom.TabIndex = 10;
+            this.trackTileZoom.Value = 1;
+            this.trackTileZoom.Scroll += new System.EventHandler(this.trackTileZoom_Scroll);
+            this.trackTileZoom.ValueChanged += new System.EventHandler(this.trackTileZoom_ValueChanged);
             // 
             // checkBox1
             // 
@@ -112,19 +205,29 @@
             this.checkBox1.Text = "Show Collision objects";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
-            // numericUpDown4
+            // gridWidth
             // 
-            this.numericUpDown4.Location = new System.Drawing.Point(122, 94);
-            this.numericUpDown4.Name = "numericUpDown4";
-            this.numericUpDown4.Size = new System.Drawing.Size(37, 20);
-            this.numericUpDown4.TabIndex = 9;
+            this.gridWidth.Location = new System.Drawing.Point(122, 94);
+            this.gridWidth.Name = "gridWidth";
+            this.gridWidth.Size = new System.Drawing.Size(37, 20);
+            this.gridWidth.TabIndex = 9;
+            this.gridWidth.Value = new decimal(new int[] {
+            32,
+            0,
+            0,
+            0});
             // 
-            // numericUpDown3
+            // gridHeight
             // 
-            this.numericUpDown3.Location = new System.Drawing.Point(122, 68);
-            this.numericUpDown3.Name = "numericUpDown3";
-            this.numericUpDown3.Size = new System.Drawing.Size(37, 20);
-            this.numericUpDown3.TabIndex = 8;
+            this.gridHeight.Location = new System.Drawing.Point(122, 68);
+            this.gridHeight.Name = "gridHeight";
+            this.gridHeight.Size = new System.Drawing.Size(37, 20);
+            this.gridHeight.TabIndex = 8;
+            this.gridHeight.Value = new decimal(new int[] {
+            32,
+            0,
+            0,
+            0});
             // 
             // label4
             // 
@@ -166,23 +269,55 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "Tile Height";
             // 
-            // pictureBox1
+            // tileBox
             // 
-            this.pictureBox1.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 217);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(169, 304);
-            this.pictureBox1.TabIndex = 5;
-            this.pictureBox1.TabStop = false;
+            this.tileBox.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.tileBox.Cursor = System.Windows.Forms.Cursors.Default;
+            this.tileBox.Location = new System.Drawing.Point(0, 0);
+            this.tileBox.Name = "tileBox";
+            this.tileBox.Size = new System.Drawing.Size(1000, 1000);
+            this.tileBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.tileBox.TabIndex = 5;
+            this.tileBox.TabStop = false;
+            this.tileBox.Click += new System.EventHandler(this.tileBox_Click);
+            this.tileBox.Paint += new System.Windows.Forms.PaintEventHandler(this.tileBox_Paint);
+            this.tileBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.tileBox_MouseMove);
+            this.tileBox.Resize += new System.EventHandler(this.tileBox_Resize);
             // 
-            // pictureBox2
+            // mapBox
             // 
-            this.pictureBox2.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.pictureBox2.Location = new System.Drawing.Point(193, 37);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(635, 483);
-            this.pictureBox2.TabIndex = 6;
-            this.pictureBox2.TabStop = false;
+            this.mapBox.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.mapBox.Location = new System.Drawing.Point(3, 3);
+            this.mapBox.Name = "mapBox";
+            this.mapBox.Size = new System.Drawing.Size(320, 320);
+            this.mapBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.mapBox.TabIndex = 6;
+            this.mapBox.TabStop = false;
+            this.mapBox.Paint += new System.Windows.Forms.PaintEventHandler(this.mapBox_Paint);
+            this.mapBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.mapBox_MouseMove);
+            // 
+            // tilePanel
+            // 
+            this.tilePanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.tilePanel.AutoScroll = true;
+            this.tilePanel.Controls.Add(this.tileBox);
+            this.tilePanel.Location = new System.Drawing.Point(12, 217);
+            this.tilePanel.Name = "tilePanel";
+            this.tilePanel.Size = new System.Drawing.Size(300, 304);
+            this.tilePanel.TabIndex = 7;
+            // 
+            // MapPanel
+            // 
+            this.MapPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.MapPanel.AutoScroll = true;
+            this.MapPanel.Controls.Add(this.mapBox);
+            this.MapPanel.Location = new System.Drawing.Point(344, 28);
+            this.MapPanel.Name = "MapPanel";
+            this.MapPanel.Size = new System.Drawing.Size(484, 493);
+            this.MapPanel.TabIndex = 8;
             // 
             // MapEditor
             // 
@@ -190,22 +325,27 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(840, 533);
-            this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.MapPanel);
+            this.Controls.Add(this.tilePanel);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
             this.Name = "MapEditor";
             this.Text = "MapEditor";
+            this.Resize += new System.EventHandler(this.MapEditor_Resize);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tileHeight)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tileWidth)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackTileZoom)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridWidth)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridHeight)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tileBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mapBox)).EndInit();
+            this.tilePanel.ResumeLayout(false);
+            this.MapPanel.ResumeLayout(false);
+            this.MapPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -214,17 +354,26 @@
         #endregion
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.NumericUpDown tileHeight;
+        private System.Windows.Forms.NumericUpDown tileWidth;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.NumericUpDown numericUpDown4;
-        private System.Windows.Forms.NumericUpDown numericUpDown3;
+        private System.Windows.Forms.NumericUpDown gridWidth;
+        private System.Windows.Forms.NumericUpDown gridHeight;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox tileBox;
+        private System.Windows.Forms.PictureBox mapBox;
+        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuItemNewFile;
+        private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem TileMapMenu;
+        private System.Windows.Forms.Panel tilePanel;
+        private System.Windows.Forms.Panel MapPanel;
+        private System.Windows.Forms.Label TileZoom;
+        private System.Windows.Forms.TrackBar trackTileZoom;
+        private System.Windows.Forms.Button refreshButton;
     }
 }
