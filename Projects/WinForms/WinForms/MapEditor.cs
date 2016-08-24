@@ -8,14 +8,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Json;
 
 namespace WinForms
 {
-    public partial class MapEditor : Form
+     public partial class MapEditor : Form
     {
         Bitmap tileSet = null;
 
+        Bitmap background = null;
+
         //Bitmap currentTile = null;
+
+        TileLayer map;
 
         Rectangle hover;
 
@@ -37,8 +43,6 @@ namespace WinForms
         {
             InitializeComponent();
             InitializeTileZoom();
-
-
         }
 
         private void InitializeTileZoom()
@@ -98,56 +102,6 @@ namespace WinForms
 
                 tileBox.Size = new Size(new Point((int)((float)tileSet.Width * zoom), (int)((float)tileSet.Height * zoom)));                
             }
-
-            
-
-
-            //g.ScaleTransform(zoom, zoom);   
-
-
-            //if (tileSet != null)
-            //{
-            //    if (tileWidth.Value < 1)
-            //        tileWidth.Value = 1;
-            //    if (tileHeight.Value < 1)
-            //        tileHeight.Value = 1;
-
-            //    int columns = tileSet.Width / (int)tileWidth.Value;
-
-            //    int rows = tileSet.Height / (int)tileHeight.Value;
-
-            //    int width = (int)tileWidth.Value * columns;
-            //    int height = (int)tileHeight.Value * rows;
-
-            //    //if(zoom >0)
-            //    //{
-            //    //    width *= (int)zoom;
-            //    //    height *= (int)zoom;
-            //    //}
-
-            //    Bitmap bmp = new Bitmap(width, height);
-            //    Graphics g = Graphics.FromImage(bmp);
-
-            //    for (int x = 0; x<= columns; ++x )
-            //    {
-            //        for(int y = 0; y<= rows; ++y)
-            //        {
-            //            g.DrawImage(tileSet, new RectangleF(x * (float)tileWidth.Value, y * (float)tileHeight.Value, (float)tileWidth.Value, (float)tileHeight.Value),
-            //                                 new RectangleF(x * (float)tileWidth.Value, y * (float)tileHeight.Value, (float)tileWidth.Value, (float)tileHeight.Value), GraphicsUnit.Pixel);
-
-            //            //g.DrawImage(tileSet, new Rectangle(x * (int)tileWidth.Value * (int)zoom, y * (int)tileHeight.Value * (int)zoom, (int)tileWidth.Value * (int)zoom, (int)tileHeight.Value * (int)zoom),
-            //            //                     new Rectangle(x * (int)tileWidth.Value, y * (int)tileHeight.Value, (int)tileWidth.Value, (int)tileHeight.Value), GraphicsUnit.Pixel);
-
-            //        }
-            //    }
-
-            //    g.Dispose();
-
-            //    tileBox.Image = bmp;
-
-            //    tileBox.Size = new Size(bmp.Width* (int)zoom, bmp.Height *(int)zoom);
-            //    // g.DrawImage(tileSet, 0, 0);                
-            //} 
         }
 
         private void tileBox_Resize(object sender, EventArgs e)
@@ -219,14 +173,12 @@ namespace WinForms
 
         private void mapBox_MouseMove(object sender, MouseEventArgs e)
         {
-            int columns = mapBox.Width / (int)gridWidth.Value;
-            int rows = mapBox.Height / (int)gridHeight.Value;
-
             int mouseX = (int)Math.Floor(e.X / (double)mapBox.Width * gridColumns);
             int mouseY = (int)Math.Floor(e.Y / (double)mapBox.Height * gridRows);
 
             target = new Rectangle((int)(mouseX * (float)gridWidth.Value), (int)(mouseY * (float)gridHeight.Value), (int)gridWidth.Value, (int)gridHeight.Value);
 
+            
             Refresh();
         }
 
@@ -234,8 +186,16 @@ namespace WinForms
         {
             Graphics g = e.Graphics;
 
+            if (background != null && mapBox.BackgroundImage == null)
+                mapBox.BackgroundImage = new Bitmap(background);
+                
+
             try
             {
+                for (int columns = 0; columns < gridColumns; ++columns)
+                    for (int rows = 0; rows < gridRows; ++rows)
+                        g.DrawImage(tileSet, map.tilelayer[rows, columns].dest, map.tilelayer[rows, columns].src, GraphicsUnit.Pixel);
+
                 g.DrawImage(tileSet, target, selection, GraphicsUnit.Pixel);
             }
             catch { }
@@ -245,11 +205,66 @@ namespace WinForms
         {
             NewFileForm file = new NewFileForm();
 
-            file.Parent = this;
-
             file.ShowDialog();
 
-            gridWidth = file.gri
+            gridWidth = file.gridWidth;
+            gridHeight = file.gridHeight;
+            gridColumns = (int)file.gridColumns.Value;
+            gridRows = (int)file.gridRows.Value;
+
+            map = new TileLayer((int)tileWidth.Value, (int)tileHeight.Value, (int)gridWidth.Value, (int)gridHeight.Value, gridColumns, gridRows);
+
+            mapBox.Size = new Size((int)gridWidth.Value * gridColumns, (int)gridHeight.Value * gridRows);
+        }
+
+        private void mapBox_MouseClick(object sender, MouseEventArgs e)
+        {
+            int mouseX = (int)Math.Floor(e.X / (double)mapBox.Width * gridColumns);
+            int mouseY = (int)Math.Floor(e.Y / (double)mapBox.Height * gridRows);
+
+            if(map != null)
+                 map.set(selection, mouseX, mouseY);
+        }
+
+        private void setBackground_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog loadBackGround = new OpenFileDialog();
+
+            loadBackGround.Filter = "png files (*.png)|*.png|All files (*.*)|*.*";
+            loadBackGround.FilterIndex = 1;
+            loadBackGround.RestoreDirectory = true;
+
+            if (loadBackGround.ShowDialog() == DialogResult.OK)
+            {
+                FileStream file = new FileStream(loadBackGround.FileName, FileMode.Open);
+                background = new Bitmap(file);
+
+                mapBox.BackgroundImage = new Bitmap(background);
+
+                file.Close();                              
+
+                mapBox.Refresh();
+            }
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+
+            saveFileDialog1.Filter = "JSON (*.json)|*.json";
+            saveFileDialog1.FilterIndex = 1;
+            saveFileDialog1.RestoreDirectory = true;
+
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                FileStream file = new FileStream(saveFileDialog1.FileName, FileMode.Create);
+
+                DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(MapEditor));
+
+                ser.WriteObject(file, this);
+
+                file.Close();
+            }
         }
     }
 }

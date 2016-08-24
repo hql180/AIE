@@ -51,6 +51,8 @@
             this.mapBox = new System.Windows.Forms.PictureBox();
             this.tilePanel = new System.Windows.Forms.Panel();
             this.MapPanel = new System.Windows.Forms.Panel();
+            this.setBackground = new System.Windows.Forms.Button();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tileHeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tileWidth)).BeginInit();
@@ -79,7 +81,8 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openToolStripMenuItem,
-            this.loadToolStripMenuItem});
+            this.loadToolStripMenuItem,
+            this.saveToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "&File";
@@ -89,13 +92,13 @@
             this.openToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuItemNewFile});
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.openToolStripMenuItem.Text = "&Open";
             // 
             // menuItemNewFile
             // 
             this.menuItemNewFile.Name = "menuItemNewFile";
-            this.menuItemNewFile.Size = new System.Drawing.Size(152, 22);
+            this.menuItemNewFile.Size = new System.Drawing.Size(119, 22);
             this.menuItemNewFile.Text = "&New File";
             this.menuItemNewFile.Click += new System.EventHandler(this.menuItemNewFile_Click);
             // 
@@ -104,7 +107,7 @@
             this.loadToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.TileMapMenu});
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.loadToolStripMenuItem.Text = "&Load";
             // 
             // TileMapMenu
@@ -144,6 +147,7 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.setBackground);
             this.groupBox1.Controls.Add(this.refreshButton);
             this.groupBox1.Controls.Add(this.TileZoom);
             this.groupBox1.Controls.Add(this.trackTileZoom);
@@ -294,6 +298,7 @@
             this.mapBox.TabIndex = 6;
             this.mapBox.TabStop = false;
             this.mapBox.Paint += new System.Windows.Forms.PaintEventHandler(this.mapBox_Paint);
+            this.mapBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mapBox_MouseClick);
             this.mapBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.mapBox_MouseMove);
             // 
             // tilePanel
@@ -318,6 +323,23 @@
             this.MapPanel.Name = "MapPanel";
             this.MapPanel.Size = new System.Drawing.Size(484, 493);
             this.MapPanel.TabIndex = 8;
+            // 
+            // setBackground
+            // 
+            this.setBackground.Location = new System.Drawing.Point(186, 145);
+            this.setBackground.Name = "setBackground";
+            this.setBackground.Size = new System.Drawing.Size(114, 23);
+            this.setBackground.TabIndex = 14;
+            this.setBackground.Text = "Set Background";
+            this.setBackground.UseVisualStyleBackColor = true;
+            this.setBackground.Click += new System.EventHandler(this.setBackground_Click);
+            // 
+            // saveToolStripMenuItem
+            // 
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem.Text = "&Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // MapEditor
             // 
@@ -375,5 +397,7 @@
         private System.Windows.Forms.Label TileZoom;
         private System.Windows.Forms.TrackBar trackTileZoom;
         private System.Windows.Forms.Button refreshButton;
+        private System.Windows.Forms.Button setBackground;
+        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
     }
 }

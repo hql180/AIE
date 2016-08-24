@@ -114,7 +114,7 @@
             this.gridColumns.Size = new System.Drawing.Size(37, 20);
             this.gridColumns.TabIndex = 16;
             this.gridColumns.Value = new decimal(new int[] {
-            20,
+            10,
             0,
             0,
             0});
@@ -126,7 +126,7 @@
             this.gridRows.Size = new System.Drawing.Size(37, 20);
             this.gridRows.TabIndex = 17;
             this.gridRows.Value = new decimal(new int[] {
-            20,
+            10,
             0,
             0,
             0});
