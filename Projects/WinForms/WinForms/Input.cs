@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace WinForms
 {
-    class Input
+    class Input // Not part of project
     {
         private static Hashtable keyTable = new Hashtable();
 

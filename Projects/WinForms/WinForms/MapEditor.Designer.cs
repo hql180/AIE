@@ -32,38 +32,41 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemNewFile = new System.Windows.Forms.ToolStripMenuItem();
-            this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadFile = new System.Windows.Forms.ToolStripMenuItem();
             this.TileMapMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tileHeight = new System.Windows.Forms.NumericUpDown();
             this.tileWidth = new System.Windows.Forms.NumericUpDown();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.setBackground = new System.Windows.Forms.Button();
             this.refreshButton = new System.Windows.Forms.Button();
             this.TileZoom = new System.Windows.Forms.Label();
             this.trackTileZoom = new System.Windows.Forms.TrackBar();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.gridWidth = new System.Windows.Forms.NumericUpDown();
-            this.gridHeight = new System.Windows.Forms.NumericUpDown();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tileBox = new System.Windows.Forms.PictureBox();
             this.mapBox = new System.Windows.Forms.PictureBox();
             this.tilePanel = new System.Windows.Forms.Panel();
             this.MapPanel = new System.Windows.Forms.Panel();
-            this.setBackground = new System.Windows.Forms.Button();
-            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fileToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.gridHeight = new System.Windows.Forms.NumericUpDown();
+            this.gridWidth = new System.Windows.Forms.NumericUpDown();
+            this.trackGridZoom = new System.Windows.Forms.TrackBar();
+            this.label3 = new System.Windows.Forms.Label();
+            this.snakeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tileHeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tileWidth)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackTileZoom)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridWidth)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridHeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tileBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mapBox)).BeginInit();
             this.tilePanel.SuspendLayout();
             this.MapPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridHeight)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridWidth)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackGridZoom)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -81,7 +84,7 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openToolStripMenuItem,
-            this.loadToolStripMenuItem,
+            this.loadFile,
             this.saveToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
@@ -92,30 +95,39 @@
             this.openToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuItemNewFile});
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
-            this.openToolStripMenuItem.Text = "&Open";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Text = "&Create";
             // 
             // menuItemNewFile
             // 
             this.menuItemNewFile.Name = "menuItemNewFile";
-            this.menuItemNewFile.Size = new System.Drawing.Size(119, 22);
+            this.menuItemNewFile.Size = new System.Drawing.Size(152, 22);
             this.menuItemNewFile.Text = "&New File";
             this.menuItemNewFile.Click += new System.EventHandler(this.menuItemNewFile_Click);
             // 
-            // loadToolStripMenuItem
+            // loadFile
             // 
-            this.loadToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.TileMapMenu});
-            this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
-            this.loadToolStripMenuItem.Text = "&Load";
+            this.loadFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.TileMapMenu,
+            this.fileToolStripMenuItem1,
+            this.snakeToolStripMenuItem});
+            this.loadFile.Name = "loadFile";
+            this.loadFile.Size = new System.Drawing.Size(152, 22);
+            this.loadFile.Text = "&Load";
             // 
             // TileMapMenu
             // 
             this.TileMapMenu.Name = "TileMapMenu";
-            this.TileMapMenu.Size = new System.Drawing.Size(120, 22);
+            this.TileMapMenu.Size = new System.Drawing.Size(152, 22);
             this.TileMapMenu.Text = "&Tile Map";
             this.TileMapMenu.Click += new System.EventHandler(this.TileMapMenu_Click);
+            // 
+            // saveToolStripMenuItem
+            // 
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem.Text = "&Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // tileHeight
             // 
@@ -147,6 +159,8 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.trackGridZoom);
             this.groupBox1.Controls.Add(this.setBackground);
             this.groupBox1.Controls.Add(this.refreshButton);
             this.groupBox1.Controls.Add(this.TileZoom);
@@ -154,8 +168,6 @@
             this.groupBox1.Controls.Add(this.checkBox1);
             this.groupBox1.Controls.Add(this.gridWidth);
             this.groupBox1.Controls.Add(this.gridHeight);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.tileWidth);
@@ -166,6 +178,16 @@
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tile Settings";
+            // 
+            // setBackground
+            // 
+            this.setBackground.Location = new System.Drawing.Point(186, 145);
+            this.setBackground.Name = "setBackground";
+            this.setBackground.Size = new System.Drawing.Size(114, 23);
+            this.setBackground.TabIndex = 14;
+            this.setBackground.Text = "Set Background";
+            this.setBackground.UseVisualStyleBackColor = true;
+            this.setBackground.Click += new System.EventHandler(this.setBackground_Click);
             // 
             // refreshButton
             // 
@@ -208,50 +230,6 @@
             this.checkBox1.TabIndex = 10;
             this.checkBox1.Text = "Show Collision objects";
             this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // gridWidth
-            // 
-            this.gridWidth.Location = new System.Drawing.Point(122, 94);
-            this.gridWidth.Name = "gridWidth";
-            this.gridWidth.Size = new System.Drawing.Size(37, 20);
-            this.gridWidth.TabIndex = 9;
-            this.gridWidth.Value = new decimal(new int[] {
-            32,
-            0,
-            0,
-            0});
-            // 
-            // gridHeight
-            // 
-            this.gridHeight.Location = new System.Drawing.Point(122, 68);
-            this.gridHeight.Name = "gridHeight";
-            this.gridHeight.Size = new System.Drawing.Size(37, 20);
-            this.gridHeight.TabIndex = 8;
-            this.gridHeight.Value = new decimal(new int[] {
-            32,
-            0,
-            0,
-            0});
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(6, 94);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(64, 15);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Grid Width";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(6, 68);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(69, 15);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Grid Height";
             // 
             // label2
             // 
@@ -324,22 +302,68 @@
             this.MapPanel.Size = new System.Drawing.Size(484, 493);
             this.MapPanel.TabIndex = 8;
             // 
-            // setBackground
+            // fileToolStripMenuItem1
             // 
-            this.setBackground.Location = new System.Drawing.Point(186, 145);
-            this.setBackground.Name = "setBackground";
-            this.setBackground.Size = new System.Drawing.Size(114, 23);
-            this.setBackground.TabIndex = 14;
-            this.setBackground.Text = "Set Background";
-            this.setBackground.UseVisualStyleBackColor = true;
-            this.setBackground.Click += new System.EventHandler(this.setBackground_Click);
+            this.fileToolStripMenuItem1.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
+            this.fileToolStripMenuItem1.Name = "fileToolStripMenuItem1";
+            this.fileToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.fileToolStripMenuItem1.Text = "&Save File";
+            this.fileToolStripMenuItem1.Click += new System.EventHandler(this.fileToolStripMenuItem1_Click);
             // 
-            // saveToolStripMenuItem
+            // gridHeight
             // 
-            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.saveToolStripMenuItem.Text = "&Save";
-            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
+            this.gridHeight.Location = new System.Drawing.Point(122, 68);
+            this.gridHeight.Name = "gridHeight";
+            this.gridHeight.Size = new System.Drawing.Size(37, 20);
+            this.gridHeight.TabIndex = 8;
+            this.gridHeight.Value = new decimal(new int[] {
+            32,
+            0,
+            0,
+            0});
+            this.gridHeight.Visible = false;
+            // 
+            // gridWidth
+            // 
+            this.gridWidth.Location = new System.Drawing.Point(122, 94);
+            this.gridWidth.Name = "gridWidth";
+            this.gridWidth.Size = new System.Drawing.Size(37, 20);
+            this.gridWidth.TabIndex = 9;
+            this.gridWidth.Value = new decimal(new int[] {
+            32,
+            0,
+            0,
+            0});
+            this.gridWidth.Visible = false;
+            // 
+            // trackGridZoom
+            // 
+            this.trackGridZoom.Location = new System.Drawing.Point(186, 94);
+            this.trackGridZoom.Minimum = 1;
+            this.trackGridZoom.Name = "trackGridZoom";
+            this.trackGridZoom.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.trackGridZoom.Size = new System.Drawing.Size(104, 45);
+            this.trackGridZoom.TabIndex = 15;
+            this.trackGridZoom.Value = 1;
+            this.trackGridZoom.Scroll += new System.EventHandler(this.trackGridZoom_Scroll);
+            this.trackGridZoom.ValueChanged += new System.EventHandler(this.trackGridZoom_ValueChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(204, 73);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(65, 15);
+            this.label3.TabIndex = 16;
+            this.label3.Text = "Grid Zoom";
+            // 
+            // snakeToolStripMenuItem
+            // 
+            this.snakeToolStripMenuItem.Name = "snakeToolStripMenuItem";
+            this.snakeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.snakeToolStripMenuItem.Text = "Snake";
+            this.snakeToolStripMenuItem.Click += new System.EventHandler(this.snakeToolStripMenuItem_Click);
             // 
             // MapEditor
             // 
@@ -361,13 +385,14 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackTileZoom)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridWidth)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridHeight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tileBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mapBox)).EndInit();
             this.tilePanel.ResumeLayout(false);
             this.MapPanel.ResumeLayout(false);
             this.MapPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridHeight)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridWidth)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackGridZoom)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -380,17 +405,13 @@
         private System.Windows.Forms.NumericUpDown tileWidth;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.NumericUpDown gridWidth;
-        private System.Windows.Forms.NumericUpDown gridHeight;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox tileBox;
         private System.Windows.Forms.PictureBox mapBox;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem menuItemNewFile;
-        private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem loadFile;
         private System.Windows.Forms.ToolStripMenuItem TileMapMenu;
         private System.Windows.Forms.Panel tilePanel;
         private System.Windows.Forms.Panel MapPanel;
@@ -399,5 +420,11 @@
         private System.Windows.Forms.Button refreshButton;
         private System.Windows.Forms.Button setBackground;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem1;
+        private System.Windows.Forms.NumericUpDown gridWidth;
+        private System.Windows.Forms.NumericUpDown gridHeight;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TrackBar trackGridZoom;
+        private System.Windows.Forms.ToolStripMenuItem snakeToolStripMenuItem;
     }
 }

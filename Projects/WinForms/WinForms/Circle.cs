@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WinForms
 {
-    class Circle
+    class Circle // Not part of project
     {
         public int x { get; set; }
         public int y { get; set; }

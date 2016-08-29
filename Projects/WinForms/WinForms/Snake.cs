@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace WinForms
 {
-    public partial class Snake : Form
+    public partial class Snake : Form // Not part of project
     {
 
         private List<Circle> Snakey = new List<Circle>();
@@ -192,7 +192,7 @@ namespace WinForms
 
             Snakey.Add(food);
 
-            //GenerateFood();
+            GenerateFood();
 
             Settings.Score += Settings.Points;
             scoreValue.Text = Settings.Score.ToString();

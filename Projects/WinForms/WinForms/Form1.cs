@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace WinForms
 {
-    public partial class Form1 : Form
+    public partial class Form1 : Form // Not part of project
     {
         public Form1()
         {
