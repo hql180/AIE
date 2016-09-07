@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using InControl;
 
 public class Shoot : MonoBehaviour
 {
+    InputDevice device;
 
     public Rigidbody projectile;
     public float bulletSpeed = 100f;
@@ -16,6 +18,8 @@ public class Shoot : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
+        device = InputManager.ActiveDevice;
+
         projectilePool = new Rigidbody[bulletCapacity];
         for(int i = 0; i < projectilePool.Length; ++i)
         {
@@ -37,7 +41,7 @@ public class Shoot : MonoBehaviour
 	void Update ()
     {
         fireTiming -= Time.deltaTime;
-	    if(Input.GetButton("Fire1") && fireTiming <= 0)
+        if ((device.RightTrigger.IsPressed || Input.GetMouseButton(0) ) && fireTiming <= 0)
         {
             fireTiming = fireRate;
             Rigidbody bullet = null;
@@ -46,7 +50,7 @@ public class Shoot : MonoBehaviour
             {
                 if(!projectilePool[i].gameObject.activeSelf)
                 {
-                    StartCoroutine(Despawn(projectilePool[i], 5));
+                    //StartCoroutine(Despawn(projectilePool[i], 5));
                     bullet = projectilePool[i];
                     projectilePool[i].gameObject.SetActive(true);
                     break;
@@ -58,6 +62,7 @@ public class Shoot : MonoBehaviour
                 bullet.position = transform.position;
                 bullet.rotation = transform.rotation;
                 bullet.velocity = transform.forward * bulletSpeed;
+                bullet.GetComponent<Bullet>().ResetLifeTime();
             }
         }
 	}

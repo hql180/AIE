@@ -21,8 +21,19 @@ public class Cube : MonoBehaviour {
     {
         if(collision.collider.tag == "Bullet")
         {
-            currentHealth -= collision.gameObject.GetComponent<Bullet>().damage;
+            if (currentHealth > 0)
+            {
+                currentHealth -= collision.gameObject.GetComponent<Bullet>().damage;
+                if (currentHealth <= 0)
+                    StartCoroutine(DeactivateCube(gameObject, 5f));
+            }
         }
+    }
+
+    IEnumerator DeactivateCube(GameObject cube, float time)
+    {
+        yield return new WaitForSeconds(time);
+        gameObject.SetActive(false);
     }
 
 	// Update is called once per frame
@@ -32,5 +43,6 @@ public class Cube : MonoBehaviour {
         {
             objRef.mass = maxMass * ((float)currentHealth / (float)maxHealth);
         }
+
 	}
 }
