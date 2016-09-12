@@ -31,6 +31,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         public void LookRotation(Transform character, Transform camera)
         {
+            // Edited MouseLook to support gamepad input
             InputDevice device = InputManager.ActiveDevice;
 
             float horizontal = CrossPlatformInputManager.GetAxis("Mouse X");

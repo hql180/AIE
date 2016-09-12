@@ -4,20 +4,24 @@ using System.Collections;
 
 public class Spawner : MonoBehaviour
 {
+    [Space()]
+    [Tooltip("Prefab of object to spawn")]
+    public Transform spawnObject;
 
-    public Transform prefab;
+    [Space()]
+    [Tooltip("Maximum number of spawns on the screen")]
+    public int length = 10; 
 
-    public int length = 10;
+    private Transform[] pool; // Pre-allocate game objects to improve performance
 
-    private Transform[] pool;
-
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
     {
+        // Allocating objects to pool according to length
         pool = new Transform[length];
         for(int i = 0; i < length; ++i)
         {
-            Transform thing = Instantiate(prefab);
+            Transform thing = Instantiate(spawnObject);
             pool[i] = thing;
             thing.gameObject.SetActive(false);
             thing.hideFlags = HideFlags.HideInHierarchy;
@@ -27,29 +31,29 @@ public class Spawner : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        Debug.Log("Updating");
 	    if(Input.GetButtonDown("Jump"))
         {
-            Debug.Log("Jumping");
             Transform thing = null;
-            for (int i = 0; i < pool.Length; ++i)
+
+            // Loops through object pool to find an inactive object to spawn
+            for (int i = 0; i < pool.Length; ++i) 
             {
-                Debug.Log("Looping");
                 if (!pool[i].gameObject.activeSelf)
                 {                                    
                     thing = pool[i];
                     pool[i].gameObject.SetActive(true);
-                    Debug.Log("Activating");
                     break;
                 }
             }
 
             if (thing != null)
             {
-                Debug.Log("Positioning");
+                // Resets forces on object before setting spawn point to spawn location
+                thing.GetComponent<Cube>().Reset();                
+                thing.GetComponent<Rigidbody>().velocity = Vector3.zero;                
+                thing.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
                 thing.position = transform.position;
-                thing.rotation = transform.rotation;
-                
+                thing.rotation = transform.rotation;                
             }        
 
         }

@@ -4,33 +4,53 @@ using InControl;
 
 public class Shoot : MonoBehaviour
 {
+    // Enables gamepad input
     InputDevice device;
 
+    [Tooltip("Projectile prefab")]
     public Rigidbody projectile;
-    public float bulletSpeed = 100f;
-    public int bulletCapacity = 20;
-    public float fireRate = .1f;
 
+    [Space()]
+    [Header("Bullet Properties")]
+    [Tooltip("How fast the bullet travels")]
+    public float bulletSpeed = 100f;
+
+    [Tooltip("Sets maximum number of bullets active")]
+    public int bulletPool = 20; 
+
+    [Tooltip("Bullets fired per second")]
+    public int fireRate = 10;
+
+    // Array to contain bullets
     private Rigidbody[] projectilePool;
-    private float fireTiming = 0;
+
+    // Timer to control rate of fire
+    private float fireTimer = 0;
+    private float fireTiming;
 
 
 	// Use this for initialization
 	void Start ()
     {
+        // Initializes gamepad if plugged in
         device = InputManager.ActiveDevice;
 
-        projectilePool = new Rigidbody[bulletCapacity];
+        // Sets timing on bullet fire rate
+        fireTiming = 1f / (float)fireRate;
+
+        // Pre-allocating bullets
+        projectilePool = new Rigidbody[bulletPool];
         for(int i = 0; i < projectilePool.Length; ++i)
         {
             Rigidbody bullet = Instantiate(projectile) as Rigidbody;
             bullet.gameObject.SetActive(false);
             bullet.hideFlags = HideFlags.HideInHierarchy;
-            Physics.IgnoreCollision(bullet.GetComponent<Collider>(), transform.parent.parent.GetComponent<Collider>());
+            Physics.IgnoreCollision(bullet.GetComponent<Collider>(), transform.parent.parent.GetComponent<Collider>()); // Removes collision between bullet and shooter
             projectilePool[i] = bullet;
         }
 	}
 
+    // Not used
     IEnumerator Despawn(Rigidbody bullet, float time)
     {
         yield return new WaitForSeconds(time);
@@ -40,12 +60,19 @@ public class Shoot : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        fireTiming -= Time.deltaTime;
-        if ((device.RightTrigger.IsPressed || Input.GetMouseButton(0) ) && fireTiming <= 0)
+        // Reduces fireTimer based on deltaTime
+        fireTimer -= Time.deltaTime;
+
+        // Checks for fire trigger and fires if fireTimer is below 0
+        if ((device.RightTrigger.IsPressed || Input.GetMouseButton(0) ) && fireTimer <= 0)
         {
-            fireTiming = fireRate;
+            // Resets timer
+            fireTimer = fireTiming;
+
+
             Rigidbody bullet = null;
 
+            // Selects an inactive bullet to fire
             for(int i = 0; i < projectilePool.Length; ++i)
             {
                 if(!projectilePool[i].gameObject.activeSelf)
@@ -59,6 +86,7 @@ public class Shoot : MonoBehaviour
 
             if(bullet != null)
             {
+                // Fires bullet from spawner position
                 bullet.position = transform.position;
                 bullet.rotation = transform.rotation;
                 bullet.velocity = transform.forward * bulletSpeed;
