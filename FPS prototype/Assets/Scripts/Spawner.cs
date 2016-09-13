@@ -24,14 +24,14 @@ public class Spawner : MonoBehaviour
             Transform thing = Instantiate(spawnObject);
             pool[i] = thing;
             thing.gameObject.SetActive(false);
-            thing.hideFlags = HideFlags.HideInHierarchy;
+            //thing.hideFlags = HideFlags.HideInHierarchy;
         }
 	}
 
 	// Update is called once per frame
 	void Update ()
     {
-	    if(Input.GetButtonDown("Jump"))
+	    if(Input.GetButtonDown("Fire2"))
         {
             Transform thing = null;
 

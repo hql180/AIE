@@ -53,14 +53,18 @@ public class Cube : MonoBehaviour
     // Function to despawn cube based on timer
     IEnumerator DeactivateCube(GameObject cube, float time)
     {
+
         yield return new WaitForSeconds(time);
         gameObject.SetActive(false);
     }
 
     public void Reset()
     {
-        currentHealth = maxHealth;
-        objRef.mass = maxMass;
+        if (objRef != null)
+        {
+            currentHealth = maxHealth;
+            objRef.mass = maxMass;
+        }
     }
 
 	// Update is called once per frame

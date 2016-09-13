@@ -20,8 +20,17 @@ public class BloodSpawner : MonoBehaviour
             emiter.position = collision.transform.position;
             emiter.parent = transform;
             emiter.LookAt(transform.position - collision.relativeVelocity);
-            
+            //emiter.GetComponent<ParticleSystem>().Play();
         }
+    }
+
+    void OnDisable()
+    {
+        foreach (var particle in gameObject.GetComponentsInChildren<ParticleSystem>())
+        {
+            Destroy(particle.gameObject);
+        }
+        
     }
 
 	// Update is called once per frame
