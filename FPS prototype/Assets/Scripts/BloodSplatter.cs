@@ -33,7 +33,9 @@ public class BloodSplatter : MonoBehaviour
         // Checks whether to display blood or not
         if (displayBlood)
         {
-            alpha.a = 1f * (alphaTimer - (Mathf.Sin(alphaTimer) * .2f * Time.deltaTime) / bloodTimer);
+            alpha.a = 1f * ((alphaTimer -= Time.deltaTime) / bloodTimer) + (Mathf.Sin(alphaTimer*3) * .15f);
+
+            Debug.Log(alpha.a);
 
             bloodTexture.color = alpha;
 

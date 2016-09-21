@@ -69,10 +69,7 @@ public class CustomFirstPersonController : MonoBehaviour
         moveDirection.y -= gravity * Time.deltaTime;
         controller.Move(moveDirection * Time.deltaTime);
 
-        if(Input.GetMouseButtonDown(1))
-        {
-            
-        }
+       
 	}
 
     void OnGUI()
