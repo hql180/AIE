@@ -188,6 +188,7 @@
     <Compile Include="Assets\Scripts\BloodSpawner.cs" />
     <Compile Include="Assets\Scripts\BloodSplatter.cs" />
     <Compile Include="Assets\Scripts\Bullet.cs" />
+    <Compile Include="Assets\Scripts\ClickToMove.cs" />
     <Compile Include="Assets\Scripts\Cube.cs" />
     <Compile Include="Assets\Scripts\CustomFirstPersonController.cs" />
     <Compile Include="Assets\Scripts\FirstPersonController.cs" />
@@ -196,6 +197,8 @@
     <Compile Include="Assets\Scripts\MouseLook.cs" />
     <Compile Include="Assets\Scripts\RandomiseColour.cs" />
     <Compile Include="Assets\Scripts\RigidbodyFirstPersonController.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObject\InventoryListCreator.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObject\Item.cs" />
     <Compile Include="Assets\Scripts\Shoot.cs" />
     <Compile Include="Assets\Scripts\Spawner.cs" />
   </ItemGroup>

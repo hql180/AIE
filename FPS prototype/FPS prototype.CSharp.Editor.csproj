@@ -116,6 +116,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Editor\CrossPlatformInput\CrossPlatformInputInitialize.cs" />
+    <Compile Include="Assets\Editor\InventoryEditor.cs" />
+    <Compile Include="Assets\Editor\ItemEditor.cs" />
     <Compile Include="Assets\InControl\Editor\PackageExporter.cs" />
     <Compile Include="Assets\InControl\Editor\VersionUpdater.cs" />
     <Compile Include="Assets\InControl\InControl\Editor\InControlBuilder.cs" />
