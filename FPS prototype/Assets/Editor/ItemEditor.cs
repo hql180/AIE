@@ -2,6 +2,7 @@
 using UnityEditor;
 using System.Collections;
 
+[System.Serializable]
 [CustomEditor(typeof(Item))]
 public class ItemEditor : Editor
 {
@@ -9,12 +10,10 @@ public class ItemEditor : Editor
 
     public override void OnInspectorGUI()
     {
-        base.OnInspectorGUI();
-    }
+        Item t = (Item)target;
 
-    public static void DrawItemEditor(Item item, bool foldout)
-    {
-        
-    }
+        base.OnInspectorGUI();      
 
+        t.itemDescription = EditorGUILayout.TextArea(t.itemDescription, GUILayout.Height(200));
+    }
 }

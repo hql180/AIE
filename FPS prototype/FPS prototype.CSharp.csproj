@@ -197,8 +197,10 @@
     <Compile Include="Assets\Scripts\MouseLook.cs" />
     <Compile Include="Assets\Scripts\RandomiseColour.cs" />
     <Compile Include="Assets\Scripts\RigidbodyFirstPersonController.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObject\Destroy.cs" />
     <Compile Include="Assets\Scripts\ScriptableObject\InventoryListCreator.cs" />
     <Compile Include="Assets\Scripts\ScriptableObject\Item.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObject\ItemScript.cs" />
     <Compile Include="Assets\Scripts\Shoot.cs" />
     <Compile Include="Assets\Scripts\Spawner.cs" />
   </ItemGroup>

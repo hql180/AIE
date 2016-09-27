@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEditor;
 
 [CustomEditor(typeof(InventoryListCreator))]
 public class InventoryEditor : Editor
 {
-    public static bool[] foldout = new bool[100];
+    public List<bool> foldout = new List<bool>();
     public override void OnInspectorGUI()
     {
         InventoryListCreator t = (InventoryListCreator)target;
@@ -14,6 +15,9 @@ public class InventoryEditor : Editor
 
         for (int i = 0; i < t.Inventory.Count; ++i) 
         {
+            if (i + 1 > foldout.Count)
+                foldout.Add(false);
+
             Editor e = CreateEditor(t.Inventory[i], null);
             foldout[i] = EditorGUILayout.Foldout(foldout[i], t.Inventory[i].itemName);
 
