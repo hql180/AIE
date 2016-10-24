@@ -2,10 +2,10 @@
 using System.Collections;
 using UnityStandardAssets.Characters.FirstPerson;
 using System.Collections.Generic;
-
+using System;
 
 public class CustomFirstPersonController : MonoBehaviour
-{
+{    
     [Tooltip("Walking Speed")]
     public float walkSpeed = 4f;
 
@@ -67,35 +67,6 @@ public class CustomFirstPersonController : MonoBehaviour
 	void Update ()
     {
         mouseLook.LookRotation(transform, FPCamera.transform);
-	    if(controller.isGrounded)
-        {
-            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-            moveDirection = transform.TransformDirection(moveDirection);
-
-            if (Input.GetKey("left shift") && 
-                currentStamina > 0 && 
-                moveDirection.magnitude > 0 &&
-                exhaustedTimer <= 0)
-            {
-                currentStamina -= Time.deltaTime;
-                moveDirection *= runSpeed;
-
-                if (currentStamina < 0)
-                    exhaustedTimer = 2;
-            }
-            else
-            {
-                if (maxStamina > currentStamina)
-                    currentStamina += Time.deltaTime;
-                moveDirection *= walkSpeed;
-                exhaustedTimer -= Time.deltaTime;
-            }            
-
-            if(Input.GetButton("Jump"))
-            {
-                moveDirection.y = jumpHeight;
-            }
-        }
 
         if(Input.GetMouseButtonDown(1))
         {
@@ -111,21 +82,52 @@ public class CustomFirstPersonController : MonoBehaviour
 
         bloodSplat.UpdateCondition(currentHealth / maxHealth);
 
-        headBob.BobHead(controller.velocity.magnitude);
+        if (controller.isGrounded)
+            headBob.BobHead(controller.velocity.magnitude);
 
-        Debug.Log(controller.velocity.magnitude);
+
+        Debug.Log(controller.velocity.magnitude);        
+	}
+
+    void FixedUpdate()
+    {
+        if (controller.isGrounded)
+        {
+            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+            moveDirection = transform.TransformDirection(moveDirection);
+
+            if (Input.GetKey("left shift") &&
+                currentStamina > 0 &&
+                moveDirection.magnitude > 0 &&
+                exhaustedTimer <= 0)
+            {
+                currentStamina -= Time.deltaTime;
+                moveDirection *= runSpeed;
+
+                if (currentStamina < 0)
+                    exhaustedTimer = 2;
+            }
+            else
+            {
+                if (maxStamina > currentStamina)
+                    currentStamina += Time.deltaTime;
+                moveDirection *= walkSpeed;
+                exhaustedTimer -= Time.deltaTime;
+            }
+
+            if (Input.GetButton("Jump"))
+            {
+                moveDirection.y = jumpHeight;
+            }
+        }
 
         moveDirection.y -= gravity * Time.deltaTime;
-        controller.Move(moveDirection * Time.deltaTime);       
-	}
+
+        controller.Move(moveDirection * Time.deltaTime);
+    }
 
     public void takeSomeDamage()
     {
         currentHealth -= 9;
-    }
-
-    void OnDrawGizmos()
-    {
-        Gizmos.DrawLine(transform.position, transform.position + transform.forward * 5);
     }
 }
